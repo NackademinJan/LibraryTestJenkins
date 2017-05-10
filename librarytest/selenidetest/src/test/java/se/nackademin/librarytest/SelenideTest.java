@@ -23,7 +23,7 @@ public class SelenideTest extends TestBase{
     }
     
     
-    @Test // testcase 1
+    //@Test // testcase 1
     public void testCreateNewAuthor(){
         LOG.log(Level.INFO, "*** Starting testCreateNewAuthor() test ***");
         UserHelper.logInAsAdmin();
@@ -60,7 +60,7 @@ public class SelenideTest extends TestBase{
         LOG.log(Level.INFO, "*** Finished testChangeEmailOfUser() test ***");
     }
     
-    //@Test // testcase 3
+    @Test // testcase 3
     public void testEditBookPublishingDate(){
         LOG.log(Level.INFO, "*** Starting testEditBookPublishingDate() test ***");
         UserHelper.logInAsAdmin();
