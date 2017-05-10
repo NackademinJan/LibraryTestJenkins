@@ -59,19 +59,19 @@ public class MenuPage extends PageBase{
     
     public void navigateToAddAuthor(){
         clickButton("the add author link", addAuthor);
-        sleep(500);
+        sleep(1000);
     }
     
     public void navigateToBook(String bookTitle){
         LOG.log(Level.INFO, "Navigating to the bookpage for book titled: {0}", bookTitle);
         NavigationHelper.goToBook(bookTitle);
-        sleep(500);
+        sleep(1000);
     }
     
     public void navigateToAuthor(String authorFullName){
         LOG.log(Level.INFO, "Navigating to the authorpage for author named: {0}", authorFullName);
         NavigationHelper.goToAuthor(authorFullName);
-        sleep(500);
+        sleep(1000);
     }
     
 }
