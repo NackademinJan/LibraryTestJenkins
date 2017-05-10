@@ -27,7 +27,7 @@ public class SelenideTest extends TestBase{
     public void testCreateNewAuthor(){
         LOG.log(Level.INFO, "*** Starting testCreateNewAuthor() test ***");
         UserHelper.logInAsAdmin();
-        
+        sleep(1000);
         String uuid = UUID.randomUUID().toString().substring(0, 12);
         String Authorname = uuid + " " + uuid;
         AuthorHelper.createNewAuthor(uuid, uuid, uuid, uuid);
