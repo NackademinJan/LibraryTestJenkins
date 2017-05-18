@@ -1,0 +1,5 @@
+se/nackademin/rest/test/GetTest.class
+se/nackademin/rest/test/PutTest.class
+se/nackademin/rest/test/DeleteTest.class
+se/nackademin/rest/test/PostTest.class
+se/nackademin/rest/test/BooksTest.class
