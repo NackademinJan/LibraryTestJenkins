@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: se.nackademin.rest.test.PutTest
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.485 sec - in se.nackademin.rest.test.PutTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.479 sec - in se.nackademin.rest.test.PutTest

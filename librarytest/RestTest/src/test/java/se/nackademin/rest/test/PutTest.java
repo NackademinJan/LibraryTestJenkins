@@ -9,24 +9,30 @@ import org.junit.Test;
 import static com.jayway.restassured.RestAssured.*;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
-import static org.junit.Assert.*;
 import static com.jayway.restassured.path.json.JsonPath.*;
 import se.nackademin.rest.test.model.Book;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import se.nackademin.rest.test.model.SingleBook;
+import org.junit.*;
+import static org.junit.Assert.*;
+import org.junit.rules.*;
+import org.slf4j.*;
 /**
  *
  * @author testautomatisering
  */
 public class PutTest {
 
+    private static Logger _logger;
     
-    public PutTest() {
-    }
-        
+    
+    
+    @Rule
+    public TestName testName = new TestName();
+    
     @BeforeClass //this method creates a dummy book, dummy author and adds the author to the book to be used during test executions
     public static void MaketheDummyBookAndDummyAuthor(){
+        _logger = LoggerFactory.getLogger(LoansTest.class);
+        
         Response makeDummysResponse = BeforeAndAfterOperations.makeDummyBookAndDummyAuthor();
         assertEquals("The status code should be: 201",  201, makeDummysResponse.statusCode());
         assertEquals("response body should be blank",  "", makeDummysResponse.body().asString());
@@ -34,6 +40,18 @@ public class PutTest {
         Response addDummyAuthorToDummyBook = BeforeAndAfterOperations.addDummyAuthorToDummyBook();
         assertEquals("The status code should be: 200",  200, addDummyAuthorToDummyBook.statusCode());
         assertEquals("response body should be blank",  "", addDummyAuthorToDummyBook.body().asString());
+    }
+    
+    @Before
+    public void before(){
+        String  name = testName.getMethodName();
+        _logger.info("Startar testfallet " +name+".");
+    }
+    
+    @After
+    public void after(){
+        String  name = testName.getMethodName();
+        _logger.info("Avslutar testfallet " +name+".");
     }
     
     @AfterClass //this method removes the dummies created by the previous method

@@ -7,17 +7,14 @@ package se.nackademin.rest.test;
 
 import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.http.ContentType;
-import org.junit.Test;
-
 import com.jayway.restassured.response.Response;
-import static org.junit.Assert.*;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import se.nackademin.rest.test.model.AllUsers;
-import se.nackademin.rest.test.model.Book;
-import se.nackademin.rest.test.model.SingleBook;
 import se.nackademin.rest.test.model.SingleUser;
 import se.nackademin.rest.test.model.User;
+import org.junit.*;
+import static org.junit.Assert.*;
+import org.junit.rules.*;
+import org.slf4j.*;
 
 /**
  *
@@ -25,12 +22,31 @@ import se.nackademin.rest.test.model.User;
  */
 public class UsersTest {
     
+    private static Logger _logger;
+    
+    @Rule
+    public TestName testName = new TestName();
+    
     @BeforeClass //this method creates a dummy book, dummy author and adds the author to the book to be used during test executions
     public static void MakeADummyUser(){
+        _logger = LoggerFactory.getLogger(LoansTest.class);
+        
         Response makeDummyUserResponse = BeforeAndAfterOperations.makeADummyUser();
         assertEquals("The status code should be: 201",  201, makeDummyUserResponse.statusCode());
         assertEquals("response body should be blank",  "", makeDummyUserResponse.body().asString());
         
+    }
+    
+    @Before
+    public void before(){
+        String  name = testName.getMethodName();
+        _logger.info("Startar testfallet " +name+".");
+    }
+    
+    @After
+    public void after(){
+        String  name = testName.getMethodName();
+        _logger.info("Avslutar testfallet " +name+".");
     }
     
     @AfterClass //this method removes the dummies created by the previous method

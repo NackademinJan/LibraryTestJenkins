@@ -60,16 +60,16 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testInvalidGetAuthorByBook" classname="se.nackademin.rest.test.GetTest" time="0.004"/>
+  <testcase name="testInvalidGetAuthorByBook" classname="se.nackademin.rest.test.GetTest" time="0.003"/>
   <testcase name="testFetchAuthorById" classname="se.nackademin.rest.test.GetTest" time="0.006"/>
-  <testcase name="testGetAllAuthors" classname="se.nackademin.rest.test.GetTest" time="0.012"/>
-  <testcase name="testInvalidGetBookByIdReturns404" classname="se.nackademin.rest.test.GetTest" time="0.004"/>
-  <testcase name="testGetAllBooks" classname="se.nackademin.rest.test.GetTest" time="0.02"/>
+  <testcase name="testGetAllAuthors" classname="se.nackademin.rest.test.GetTest" time="0.016"/>
+  <testcase name="testInvalidGetBookByIdReturns404" classname="se.nackademin.rest.test.GetTest" time="0.006"/>
+  <testcase name="testGetAllBooks" classname="se.nackademin.rest.test.GetTest" time="0.015"/>
   <testcase name="testGetBookById" classname="se.nackademin.rest.test.GetTest" time="0.015"/>
   <testcase name="testFetchBook" classname="se.nackademin.rest.test.GetTest" time="0.006"/>
   <testcase name="testGetBookByAuthor" classname="se.nackademin.rest.test.GetTest" time="0.016"/>
-  <testcase name="testGetAuthorById" classname="se.nackademin.rest.test.GetTest" time="0.005"/>
-  <testcase name="testFetchAllAuthors" classname="se.nackademin.rest.test.GetTest" time="0.007"/>
+  <testcase name="testGetAuthorById" classname="se.nackademin.rest.test.GetTest" time="0.006"/>
+  <testcase name="testFetchAllAuthors" classname="se.nackademin.rest.test.GetTest" time="0.006"/>
   <testcase name="testFetchAllBooks" classname="se.nackademin.rest.test.GetTest" time="0.012"/>
   <testcase name="testInvalidGetBookbyAuthor" classname="se.nackademin.rest.test.GetTest" time="0.004"/>
   <testcase name="testInvalidGetAuthorById" classname="se.nackademin.rest.test.GetTest" time="0.004"/>

@@ -23,7 +23,7 @@ public class SelenideTest extends TestBase{
     }
     
     
-    //@Test // testcase 1
+    @Test // testcase 1
     public void testCreateNewAuthor(){
         LOG.log(Level.INFO, "*** Starting testCreateNewAuthor() test ***");
         UserHelper.logInAsAdmin();
@@ -40,7 +40,7 @@ public class SelenideTest extends TestBase{
         LOG.log(Level.INFO, "*** Finished testCreateNewAuthor() test ***");
     }
     
-    //@Test //testcase 2
+    @Test //testcase 2
     public void testChangeEmailOfUser(){
         LOG.log(Level.INFO, "*** Starting testChangeEmailOfUser() test ***");
         String uuid = UUID.randomUUID().toString().substring(0, 12);
@@ -75,7 +75,7 @@ public class SelenideTest extends TestBase{
         LOG.log(Level.INFO, "*** Finished testEditBookPublishingDate() test ***");
     }
     
-    //@Test //testcase 4 
+    @Test //testcase 4 
     public void testBorrowABookAsUser(){
         LOG.log(Level.INFO, "*** Starting testBorrowABookAsUser() test ***");
         String uuid = UUID.randomUUID().toString().substring(0, 12);

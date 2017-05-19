@@ -9,18 +9,13 @@ import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.http.ContentType;
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.rules.*;
 import org.slf4j.*;
-
 import com.jayway.restassured.response.Response;
-import static org.junit.Assert.*;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import se.nackademin.rest.test.model.AllLoans;
-import se.nackademin.rest.test.model.Book;
 import se.nackademin.rest.test.model.SingleLoan;
 import se.nackademin.rest.test.model.Loan;
+import se.nackademin.rest.test.model.Book;
 import se.nackademin.rest.test.model.User;
 
 /**
@@ -34,7 +29,7 @@ public class LoansTest {
     public TestName testName = new TestName();
     
     @BeforeClass //this method creates a pair of dummy books, dummy users and then uses those to create two dummy loans to be used during test executions
-    public static void BeforeClass(){
+    public static void CreateTwoDummyBooksUsersAndLoans(){
         _logger = LoggerFactory.getLogger(LoansTest.class);
         
         Response makeADummyBookResponse = BeforeAndAfterOperations.makeADummyBook();
