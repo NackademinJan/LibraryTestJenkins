@@ -54,6 +54,7 @@ public class GlobVar {
     public static String thirdDummyAuthorLastName = "andYetAThirdDummyAuthorLastName";
             
     public static Integer aDummyUserId;
+    
     public static String aDummyUserDisplayName = "aDummyUserDisplayName";
     public static String aDummyUserEmail = "aDummyUserEmail";
     public static String aDummyUserFirstName = "aDummyUserFirstName";
@@ -63,6 +64,7 @@ public class GlobVar {
     public static String aDummyUserRole = "LOANER";
     
     public static Integer bDummyUserId;
+    
     public static String bDummyUserDisplayName = "anotherDummyUserDisplayName";
     public static String bDummyUserEmail = "anotherDummyUserEmail";
     public static String bDummyUserFirstName = "anotherDummyUserFirstName";
@@ -72,12 +74,14 @@ public class GlobVar {
     public static String bDummyUserRole = "LIBRARIAN";
     
     public static Integer aDummyLoanId;
+    
     public static Book aDummyLoanBook;
     public static String aDummyDateBorrowed = "1992-04-22";
     public static String aDummyDateDue = "2002-04-22";
     public static User aDummyLoanUser;
     
     public static Integer bDummyLoanId;
+    
     public static Book bDummyLoanBook;
     public static String bDummyDateBorrowed = "2011-12-12";
     public static String bDummyDateDue = "2014-12-12";

@@ -54,7 +54,6 @@ public class LoanOperations {
     public Loan fetchLastLoan(){
         Response getResponse = new LoanOperations().getAllLoans();
         Integer fetchLastLoanId = getResponse.jsonPath().getInt("loans.loan[-1].id");
-        System.out.println(fetchLastLoanId);
         Loan fetchLoan = given().accept(ContentType.JSON).get(GlobVar.BASE_URL+"loans/"+fetchLastLoanId).jsonPath().getObject("loan", Loan.class);
         return  fetchLoan;
     }

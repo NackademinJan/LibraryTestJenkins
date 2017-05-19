@@ -1,4 +1,6 @@
 /home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/BooksTest.java
+/home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/UsersTest.java
+/home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/LoansTest.java
 /home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/GetTest.java
 /home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/DeleteTest.java
 /home/testautomatisering/git6/librarytest/RestTest/src/test/java/se/nackademin/rest/test/PutTest.java

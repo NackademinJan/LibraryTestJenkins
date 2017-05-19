@@ -59,7 +59,6 @@ public class UsersTest {
     @Test //this test uses my help class AllBooks to fetch all books in the list, then find a single specific book from the response and verify that it has the correct data
     public void testFetchAllUsers(){
         AllUsers users = new UserOperations().fetchAllUsers();
-        System.out.println(users.toString());
         User DummyUser = users.getUserfromUsers(GlobVar.aDummyUserId);
         String isNotEquals = DummyUser.EqualsADummyUser(DummyUser);
         assertEquals("The String isNotEquals should be empty", "", isNotEquals);
@@ -179,7 +178,7 @@ public class UsersTest {
         assertEquals("response body should be blank", "", response.body().asString());
         
         User postedUser = new UserOperations().fetchLastUser();
-        String isNotEquals = postedUser.EqualsBDummyUser(user);
+        String isNotEquals = postedUser.EqualsBDummyMinimalUser(user);
         assertEquals("The String isNotEquals should be empty", "", isNotEquals);
         
         //this part removes our alternate dummy user to keep things tidy if we have successfully created a user to remove

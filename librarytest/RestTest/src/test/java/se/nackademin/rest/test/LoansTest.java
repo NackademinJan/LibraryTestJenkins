@@ -7,7 +7,11 @@ package se.nackademin.rest.test;
 
 import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.http.ContentType;
-import org.junit.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import org.junit.rules.*;
+import org.slf4j.*;
 
 import com.jayway.restassured.response.Response;
 import static org.junit.Assert.*;

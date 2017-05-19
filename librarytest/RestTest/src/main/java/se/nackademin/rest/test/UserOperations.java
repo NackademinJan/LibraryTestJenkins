@@ -53,7 +53,6 @@ public class UserOperations {
     public User fetchLastUser(){
         Response getResponse = new UserOperations().getAllUsers();
         Integer fetchLastUserId = getResponse.jsonPath().getInt("users.user[-1].id");
-        System.out.println(fetchLastUserId);
         User fetchUser = given().accept(ContentType.JSON).get(GlobVar.BASE_URL+"users/"+fetchLastUserId).jsonPath().getObject("user", User.class);
         return  fetchUser;
     }

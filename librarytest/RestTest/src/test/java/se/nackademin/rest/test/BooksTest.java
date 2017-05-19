@@ -5,6 +5,8 @@
  */
 package se.nackademin.rest.test;
 
+import static com.jayway.restassured.RestAssured.given;
+import com.jayway.restassured.http.ContentType;
 import org.junit.Test;
 
 import com.jayway.restassured.response.Response;
@@ -15,6 +17,8 @@ import org.junit.BeforeClass;
 import se.nackademin.rest.test.model.AllAuthors;
 import se.nackademin.rest.test.model.AllBooks;
 import se.nackademin.rest.test.model.Author;
+import se.nackademin.rest.test.model.SingleUser;
+import se.nackademin.rest.test.model.User;
 
 /**
  *
@@ -40,6 +44,34 @@ public class BooksTest {
         assertEquals("response body should be blank",  "", removeResponse.body().asString());
     }
     
+    
+    @Test //this test creates a new alternate dummy user using my User class, verifies that we get the right response code (201), a blank response body and then fetches the resulting user to verify that its data matches what we entered. It then deletes the new user to keep things tidy
+    public void testPostUser(){
+        User user = new User();
+        user.setDisplayName(GlobVar.bDummyUserDisplayName);
+        user.setEmail(GlobVar.bDummyUserEmail);
+        user.setFirstName(GlobVar.bDummyUserFirstName);
+        user.setLastName(GlobVar.bDummyUserLastName);
+        user.setPassword(GlobVar.bDummyUserPassword);
+        user.setPhone(GlobVar.bDummyUserPhone);
+        user.setRole(GlobVar.bDummyUserRole);
+        SingleUser singleUser = new SingleUser(user);
+        
+        Response response = given().contentType(ContentType.JSON).body(singleUser).post(GlobVar.BASE_URL+"users");
+        assertEquals("The status code should be: 201",  201, response.statusCode());
+        assertEquals("response body should be blank", "", response.body().asString());
+        
+        User postedUser = new UserOperations().fetchLastUser();
+        String isNotEquals = postedUser.EqualsBDummyUser(user);
+        assertEquals("The String isNotEquals should be empty", "", isNotEquals);
+        
+        //this part removes our alternate dummy user to keep things tidy if we have successfully created a user to remove
+        if(response.statusCode() == 201){
+            Response removeResponse = new UserOperations().deleteLastUser();
+            assertEquals("The status code should be: 204",  204, removeResponse.statusCode());
+            assertEquals("response body should be blank", "", response.body().asString());
+        }
+    }
     
     @Test //this test tries to perform a get-request on the api for a list of all books in the system and then verifies that we get the right statuscode (200), the response body is not blank and our dummy book is in the response we get
     public void testGetAllBooks(){

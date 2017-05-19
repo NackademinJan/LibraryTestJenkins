@@ -186,5 +186,19 @@ public class User {
         }
         return isNotEquals;
     }
+    
+    public String EqualsBDummyMinimalUser(User sample){
+        String isNotEquals = "";
+        if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){
+            isNotEquals = isNotEquals + "User's displayName was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserPassword == null ? sample.getPassword() == null : GlobVar.bDummyUserPassword.equals(sample.getPassword()))){
+            isNotEquals = isNotEquals + "User's password was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserRole == null ? sample.getRole() == null : GlobVar.bDummyUserRole.equals(sample.getRole()))){
+            isNotEquals = isNotEquals + "User's role was not the same. ";
+        }
+        return isNotEquals;
+    }
 
 }
