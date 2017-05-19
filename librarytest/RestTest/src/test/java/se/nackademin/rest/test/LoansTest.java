@@ -28,9 +28,15 @@ import se.nackademin.rest.test.model.User;
  * @author testautomatisering
  */
 public class LoansTest {
+    private static Logger _logger;
+    
+    @Rule
+    public TestName testName = new TestName();
     
     @BeforeClass //this method creates a pair of dummy books, dummy users and then uses those to create two dummy loans to be used during test executions
-    public static void MakeTwoDummyBooksUsersAndLoans(){
+    public static void BeforeClass(){
+        _logger = LoggerFactory.getLogger(LoansTest.class);
+        
         Response makeADummyBookResponse = BeforeAndAfterOperations.makeADummyBook();
         assertEquals("The status code should be: 201",  201, makeADummyBookResponse.statusCode());
         assertEquals("response body should be blank",  "", makeADummyBookResponse.body().asString());
@@ -55,6 +61,18 @@ public class LoansTest {
         assertEquals("The status code should be: 201",  201, makeBDummyLoanResponse.statusCode());
         assertEquals("response body should be blank",  "", makeBDummyLoanResponse.body().asString());
         
+    }
+    
+    @Before
+    public void before(){
+        String  name = testName.getMethodName();
+        _logger.info("Startar testfallet " +name+".");
+    }
+    
+    @After
+    public void after(){
+        String  name = testName.getMethodName();
+        _logger.info("Avslutar testfallet " +name+".");
     }
     
     @AfterClass //this method removes the dummies created by the previous method
