@@ -55,15 +55,15 @@ public class GetTest {
         
         //the next parts fetches the Dummybook from the list as a book.class object and verifies that it has the right attributes
         AllBooks books = response.jsonPath().getObject("books", AllBooks.class);
-        Book DummyBook = books.getBookfromBooks(GlobVar.dummyBookId);
+        Book DummyBook = books.getBookfromBooks(GlobVar.aDummyBookId);
         
-        assertEquals("The books description should be: " + GlobVar.dummyBookDescription,  GlobVar.dummyBookDescription, DummyBook.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, DummyBook.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.dummyBookIsbn,  GlobVar.dummyBookIsbn, DummyBook.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.dummyBookNbrPages,  GlobVar.dummyBookNbrPages, DummyBook.getNbrPages());       
+        assertEquals("The books description should be: " + GlobVar.aDummyBookDescription,  GlobVar.aDummyBookDescription, DummyBook.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, DummyBook.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.aDummyBookIsbn,  GlobVar.aDummyBookIsbn, DummyBook.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.aDummyBookNbrPages,  GlobVar.aDummyBookNbrPages, DummyBook.getNbrPages());       
         
         //the part below gets the same Dummybook as a response and verifies that it contains the name of that book's author
-        Response grabAuthorResponse = new BookOperations().getBookById(GlobVar.dummyBookId);
+        Response grabAuthorResponse = new BookOperations().getBookById(GlobVar.aDummyBookId);
         String authorName = GlobVar.dummyAuthorFirstName;
         assertNotEquals("The book list should not be empty", "", response.body().asString()); 
         assertTrue("The book list should contain the name of our test author", grabAuthorResponse.body().asString().contains(authorName)); 
@@ -73,11 +73,11 @@ public class GetTest {
     @Test //this test uses my help class AllBooks to fetch all books in the list, then find a single book from the response and verify that it has the right title
     public void testFetchAllBooks(){
         AllBooks books = new BookOperations().fetchAllBooks();
-        Book fetchedBook = books.getBookfromBooks(GlobVar.dummyBookId);
-        assertEquals("The books description should be: " + GlobVar.dummyBookDescription,  GlobVar.dummyBookDescription, fetchedBook.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, fetchedBook.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.dummyBookIsbn,  GlobVar.dummyBookIsbn, fetchedBook.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.dummyBookNbrPages,  GlobVar.dummyBookNbrPages, fetchedBook.getNbrPages());       
+        Book fetchedBook = books.getBookfromBooks(GlobVar.aDummyBookId);
+        assertEquals("The books description should be: " + GlobVar.aDummyBookDescription,  GlobVar.aDummyBookDescription, fetchedBook.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, fetchedBook.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.aDummyBookIsbn,  GlobVar.aDummyBookIsbn, fetchedBook.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.aDummyBookNbrPages,  GlobVar.aDummyBookNbrPages, fetchedBook.getNbrPages());       
         
     }
     
@@ -85,30 +85,30 @@ public class GetTest {
     
     @Test //this test fetches our dummy book from the system and verifies the response statuscode (200) and that we got the right book
     public void testGetBookById(){
-        Response response = new BookOperations().getBookById(GlobVar.dummyBookId);
+        Response response = new BookOperations().getBookById(GlobVar.aDummyBookId);
         assertEquals("The status code should be: 200",  200, response.statusCode());        
-        assertEquals("Book title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, response.body().jsonPath().getString("book.title"));
-        assertEquals("The books description should be: " + GlobVar.dummyBookDescription,  GlobVar.dummyBookDescription, response.body().jsonPath().getString("book.description"));       
-        assertEquals("The books title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, response.body().jsonPath().getString("book.title"));       
-        assertEquals("The books isbn should be: " + GlobVar.dummyBookIsbn,  GlobVar.dummyBookIsbn, response.body().jsonPath().getString("book.isbn"));       
-        assertEquals("The books page count should be: " + GlobVar.dummyBookNbrPages,  GlobVar.dummyBookNbrPages, (Integer)response.body().jsonPath().getInt("book.nbrPages"));
+        assertEquals("Book title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, response.body().jsonPath().getString("book.title"));
+        assertEquals("The books description should be: " + GlobVar.aDummyBookDescription,  GlobVar.aDummyBookDescription, response.body().jsonPath().getString("book.description"));       
+        assertEquals("The books title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, response.body().jsonPath().getString("book.title"));       
+        assertEquals("The books isbn should be: " + GlobVar.aDummyBookIsbn,  GlobVar.aDummyBookIsbn, response.body().jsonPath().getString("book.isbn"));       
+        assertEquals("The books page count should be: " + GlobVar.aDummyBookNbrPages,  GlobVar.aDummyBookNbrPages, (Integer)response.body().jsonPath().getInt("book.nbrPages"));
     }
     
     @Test //this test verifies that trying to retrieve a book that does not exist in the system returns the right statuscode (404) and a blank response body
     public void testInvalidGetBookByIdReturns404(){
-        Response response = new BookOperations().getBookById(GlobVar.dummyBookId + 1);
+        Response response = new BookOperations().getBookById(GlobVar.aDummyBookId + 1);
         assertEquals("status code returned should be: 404",  404, response.statusCode());
         assertEquals("response body should be blank", "", response.body().asString());
     }
 
     @Test //this test is essentially the same as testGetBookById but uses the book.class object instead of json style responses
     public void testFetchBook(){
-        Book book = new BookOperations().fetchBookById(GlobVar.dummyBookId);
-        assertEquals("book id should be: "+GlobVar.dummyBookId, GlobVar.dummyBookId, book.getId());    
-        assertEquals("The books description should be: " + GlobVar.dummyBookDescription,  GlobVar.dummyBookDescription, book.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, book.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.dummyBookIsbn,  GlobVar.dummyBookIsbn, book.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.dummyBookNbrPages,  GlobVar.dummyBookNbrPages, book.getNbrPages());       
+        Book book = new BookOperations().fetchBookById(GlobVar.aDummyBookId);
+        assertEquals("book id should be: "+GlobVar.aDummyBookId, GlobVar.aDummyBookId, book.getId());    
+        assertEquals("The books description should be: " + GlobVar.aDummyBookDescription,  GlobVar.aDummyBookDescription, book.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, book.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.aDummyBookIsbn,  GlobVar.aDummyBookIsbn, book.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.aDummyBookNbrPages,  GlobVar.aDummyBookNbrPages, book.getNbrPages());       
         
     }
     
@@ -118,10 +118,10 @@ public class GetTest {
     public void testGetBookByAuthor(){
         Response response = new BookOperations().getBookByAuthor(GlobVar.dummyAuthorId);
         assertEquals("The status code should be: 200",  200, response.statusCode());
-        assertEquals("The books description should be: " + GlobVar.dummyBookDescription,  GlobVar.dummyBookDescription, response.body().jsonPath().getString("books.book.description"));       
-        assertEquals("The books title should be: " + GlobVar.dummyBookTitle,  GlobVar.dummyBookTitle, response.body().jsonPath().getString("books.book.title"));       
-        assertEquals("The books isbn should be: " + GlobVar.dummyBookIsbn,  GlobVar.dummyBookIsbn, response.body().jsonPath().getString("books.book.isbn"));       
-        assertEquals("The books page count should be: " + GlobVar.dummyBookNbrPages,  GlobVar.dummyBookNbrPages, (Integer)response.body().jsonPath().getInt("books.book.nbrPages"));
+        assertEquals("The books description should be: " + GlobVar.aDummyBookDescription,  GlobVar.aDummyBookDescription, response.body().jsonPath().getString("books.book.description"));       
+        assertEquals("The books title should be: " + GlobVar.aDummyBookTitle,  GlobVar.aDummyBookTitle, response.body().jsonPath().getString("books.book.title"));       
+        assertEquals("The books isbn should be: " + GlobVar.aDummyBookIsbn,  GlobVar.aDummyBookIsbn, response.body().jsonPath().getString("books.book.isbn"));       
+        assertEquals("The books page count should be: " + GlobVar.aDummyBookNbrPages,  GlobVar.aDummyBookNbrPages, (Integer)response.body().jsonPath().getInt("books.book.nbrPages"));
         
     }
     
@@ -141,14 +141,14 @@ public class GetTest {
     
     @Test //this test gets a single author from a book retrieved by its bookId and verifies the response statuscode (200) and that we got the right author
     public void testGetAuthorByBook(){
-        Response response = new BookOperations().getAuthorByBook(GlobVar.dummyBookId);
+        Response response = new BookOperations().getAuthorByBook(GlobVar.aDummyBookId);
         assertEquals("The status code should be: 200",  200, response.statusCode());
         assertEquals("Author name should be " + GlobVar.dummyAuthorFirstName,  GlobVar.dummyAuthorFirstName, response.body().jsonPath().getString("authors.author.firstName"));
     }
     
     @Test //this test verifies that trying to retrieve an author using a bookId that does not exist in the system returns the right statuscode (404) and a blank response body
     public void testInvalidGetAuthorByBook(){
-        Response response = new BookOperations().getAuthorByBook(GlobVar.dummyBookId + 1);
+        Response response = new BookOperations().getAuthorByBook(GlobVar.aDummyBookId + 1);
         assertEquals("The status code should be: 404",  404, response.statusCode());
         assertEquals("response body should be blank", "", response.body().asString());
     }

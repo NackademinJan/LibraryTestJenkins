@@ -10,9 +10,7 @@ import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import java.util.UUID;
-import se.nackademin.rest.test.model.AllAuthors;
 import se.nackademin.rest.test.model.AllUsers;
-import se.nackademin.rest.test.model.Author;
 import se.nackademin.rest.test.model.User;
 
 /**
@@ -46,7 +44,7 @@ public class UserOperations {
     }
     
     //this method gets a specific user by his userId and reutrns an instance of my helplcass User with of the result. 
-    public User fetchAuthor(Integer userId){
+    public User fetchUser(Integer userId){
         User user = given().accept(ContentType.JSON).get(GlobVar.BASE_URL+"users/"+userId).jsonPath().getObject("user", User.class);
         return user;
     }
@@ -54,8 +52,9 @@ public class UserOperations {
     //this method gets the last user in the list and returns it as an instance of the User.class
     public User fetchLastUser(){
         Response getResponse = new UserOperations().getAllUsers();
-        Integer fetchlastUserId = getResponse.jsonPath().getInt("users.user[-1].id");
-        User fetchUser = given().accept(ContentType.JSON).get(GlobVar.BASE_URL+"user/"+fetchlastUserId).jsonPath().getObject("user", User.class);
+        Integer fetchLastUserId = getResponse.jsonPath().getInt("users.user[-1].id");
+        System.out.println(fetchLastUserId);
+        User fetchUser = given().accept(ContentType.JSON).get(GlobVar.BASE_URL+"users/"+fetchLastUserId).jsonPath().getObject("user", User.class);
         return  fetchUser;
     }
     //this method gets the last user in the list and returns it as a json style response

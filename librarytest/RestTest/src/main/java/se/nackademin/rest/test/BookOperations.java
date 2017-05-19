@@ -425,7 +425,7 @@ public class BookOperations {
     
     //this method updates the book with the bookId  in param with dummyvariables, restoring the dummybook to default for the testexecutions and returns a json style response of the results
     public Response unPutBook(Integer bookId){
-        Response unPutResponse = new BookOperations().updateBookWithAuthor(GlobVar.dummyAuthorId, GlobVar.dummyAuthorBio, GlobVar.dummyAuthorCountry, GlobVar.dummyAuthorFirstName, GlobVar.dummyAuthorLastName, bookId, GlobVar.dummyBookDescription, GlobVar.dummyBookIsbn, GlobVar.dummyBookNbrPages, GlobVar.dummyBookPublicationDate, GlobVar.dummyBookTitle, GlobVar.dummyBookTotalNbrCopies);
+        Response unPutResponse = new BookOperations().updateBookWithAuthor(GlobVar.dummyAuthorId, GlobVar.dummyAuthorBio, GlobVar.dummyAuthorCountry, GlobVar.dummyAuthorFirstName, GlobVar.dummyAuthorLastName, bookId, GlobVar.aDummyBookDescription, GlobVar.aDummyBookIsbn, GlobVar.aDummyBookNbrPages, GlobVar.aDummyBookPublicationDate, GlobVar.aDummyBookTitle, GlobVar.aDummyBookTotalNbrCopies);
 
         return unPutResponse;
     }

@@ -13,37 +13,37 @@ import java.util.Objects;
  * @author testautomatisering
  */
 public class AllUsers {
-    private ArrayList<User> users; 
+    private ArrayList<User> user; 
 
     /**
      * @return the books
      */
-    public ArrayList<User> getUsers() {
-        return users;
+    public ArrayList<User> getUser() {
+        return user;
     }
 
     /**
-     * @param users
+     * @param user
      */
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public void setUser(ArrayList<User> user) {
+        this.user = user;
     }
     
     public void addUser(User user) {
-        ArrayList<User> temp = this.users;
+        ArrayList<User> temp = this.user;
         temp.add(user);
-        this.users = temp;
+        this.user = temp;
     }
     
     public void removeUser(User user) {
-        ArrayList<User> temp = this.users;
+        ArrayList<User> temp = this.user;
         boolean removedUser = temp.remove(user);
-        if(removedUser)this.users = temp;
+        if(removedUser)this.user = temp;
     }
     
     public User getUserfromUsers(Integer id){
         User wantedUser = null;
-        for(User n: users){
+        for(User n: user){
             Integer userId = n.getId();
             
             if(Objects.equals(userId, id)){

@@ -5,6 +5,9 @@
  */
 package se.nackademin.rest.test;
 
+import se.nackademin.rest.test.model.Book;
+import se.nackademin.rest.test.model.User;
+
 /**
  *
  * @author testautomatisering
@@ -13,14 +16,23 @@ public class GlobVar {
     //this class stores all static variables for relatively easy editing of test data and base url
     public static final String BASE_URL = "http://localhost:8080/librarytest-rest/";
     
-    public static Integer dummyBookId;
+    public static Integer aDummyBookId;
     
-    public static String dummyBookDescription = "dummyTestDescription";
-    public static String dummyBookIsbn = "dummyIsbn";
-    public static Integer dummyBookNbrPages = 7357;
-    public static String dummyBookPublicationDate = "dummyBookPublicationDate";
-    public static String dummyBookTitle = "dummyTestTitle";
-    public static Integer dummyBookTotalNbrCopies = 5;
+    public static String aDummyBookDescription = "dummyTestDescription";
+    public static String aDummyBookIsbn = "dummyIsbn";
+    public static Integer aDummyBookNbrPages = 7357;
+    public static String aDummyBookPublicationDate = "dummyBookPublicationDate";
+    public static String aDummyBookTitle = "dummyTestTitle";
+    public static Integer aDummyBookTotalNbrCopies = 24;
+    
+    public static Integer bSecondDummyBookId;
+    
+    public static String bSecondDummyBookDescription = "anotherDummyTestDescription";
+    public static String bSecondDummyBookIsbn = "anotherDummyIsbn";
+    public static Integer bSecondDummyBookNbrPages = 123123;
+    public static String bSecondDummyBookPublicationDate = "1982-04-22";
+    public static String bSecondDummyBookTitle = "anotherDummyTestDescription";
+    public static Integer bSecondDummyBookTotalNbrCopies = 42;
     
     public static Integer dummyAuthorId;
     
@@ -28,13 +40,6 @@ public class GlobVar {
     public static String dummyAuthorCountry = "dummyAuthorCountry";
     public static String dummyAuthorFirstName = "1971-12-12";
     public static String dummyAuthorLastName = "dummyAuthorLastName";
-    
-    public static String secondDummyBookDescription = "anotherDummyTestDescription";
-    public static String secondDummyBookIsbn = "anotherDummyIsbn";
-    public static Integer secondDummyBookNbrPages = 123123;
-    public static String secondDummyBookPublicationDate = "1982-04-22";
-    public static String secondDummyBookTitle = "anotherDummyTestDescription";
-    public static Integer secondDummyBookTotalNbrCopies = 42;
     
     public static String secondDummyAuthorBio = "anotherDummyAuthorBio";
     public static String secondDummyAuthorCountry = "anotherDummyAuthorCountry";
@@ -65,4 +70,17 @@ public class GlobVar {
     public static String bDummyUserPassword = "anotherDummyUserPassword";
     public static String bDummyUserPhone = "anotherDummyUserPhone";
     public static String bDummyUserRole = "LIBRARIAN";
+    
+    public static Integer aDummyLoanId;
+    public static Book aDummyLoanBook;
+    public static String aDummyDateBorrowed = "1992-04-22";
+    public static String aDummyDateDue = "2002-04-22";
+    public static User aDummyLoanUser;
+    
+    public static Integer bDummyLoanId;
+    public static Book bDummyLoanBook;
+    public static String bDummyDateBorrowed = "2011-12-12";
+    public static String bDummyDateDue = "2014-12-12";
+    public static User bDummyLoanUser;
+    
 }

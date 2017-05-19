@@ -62,7 +62,7 @@ public class DeleteTest {
         String authorLastName = authorResponse.body().jsonPath().getString("author.lastName");
         Integer authorId = authorResponse.body().jsonPath().getInt("author.id");
         
-        Response postResponse = bookOperations.createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         
@@ -115,7 +115,7 @@ public class DeleteTest {
     public void testDeleteBookWithNoAuthor(){
         BookOperations bookOperations = new BookOperations();
         
-        Response postResponse = bookOperations.createBookWithInput(GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithInput(GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         

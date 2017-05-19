@@ -49,10 +49,10 @@ public class PostTest {
     @Test //This test tries to post a new book to the system and verifies that we get the right responsecode (201), a blank responsebody and then verifies that the new book with included variables are in the system
     public void testPostBook(){
         Book book = new Book();
-        book.setDescription(GlobVar.secondDummyBookDescription);
-        book.setTitle(GlobVar.secondDummyBookTitle);
-        book.setIsbn(GlobVar.secondDummyBookIsbn);
-        book.setNbrPages(GlobVar.secondDummyBookNbrPages);
+        book.setDescription(GlobVar.bSecondDummyBookDescription);
+        book.setTitle(GlobVar.bSecondDummyBookTitle);
+        book.setIsbn(GlobVar.bSecondDummyBookIsbn);
+        book.setNbrPages(GlobVar.bSecondDummyBookNbrPages);
         SingleBook singleBook = new SingleBook(book);
         
         Response response = given().contentType(ContentType.JSON).body(singleBook).post(GlobVar.BASE_URL+"books");
@@ -60,10 +60,10 @@ public class PostTest {
         assertEquals("response body should be blank", "", response.body().asString());
         
         Book verifyBook = new BookOperations().fetchLastBook();
-        assertEquals("The books description should be: " + GlobVar.secondDummyBookDescription,  book.getDescription(), verifyBook.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.secondDummyBookTitle,  book.getTitle(), verifyBook.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.secondDummyBookIsbn,  book.getIsbn(), verifyBook.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.secondDummyBookNbrPages,  book.getNbrPages(), verifyBook.getNbrPages());       
+        assertEquals("The books description should be: " + GlobVar.bSecondDummyBookDescription,  book.getDescription(), verifyBook.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.bSecondDummyBookTitle,  book.getTitle(), verifyBook.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.bSecondDummyBookIsbn,  book.getIsbn(), verifyBook.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.bSecondDummyBookNbrPages,  book.getNbrPages(), verifyBook.getNbrPages());       
         
         if(response.statusCode() == 201){
             Response deleteResponse = new BookOperations().deleteLastBook();
@@ -76,17 +76,17 @@ public class PostTest {
     @Test //this test does not use the book class but is otherwise equivalent to testPostBookWithSpecificNewId and was written mainly to see if the api woulld allow calls of the text format that "BookOperations().createBookWithInputAndId" uses to be posted.
     public void testPostBookWithSpecificNewIdWithoutBookClass(){
         Response getResponse = new BookOperations().getAllBooks();
-        Integer newId = GlobVar.dummyBookId + 1;
-        Response response = new BookOperations().createBookWithInputAndId(newId, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);    
+        Integer newId = GlobVar.aDummyBookId + 1;
+        Response response = new BookOperations().createBookWithInputAndId(newId, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);    
         
         assertEquals("The status code should be: 201",  201, response.statusCode());
         assertEquals("response body should be blank", "", response.body().asString());
         
         Book verifyBook = new BookOperations().fetchLastBook();
-        assertEquals("The books description should be: " + GlobVar.secondDummyBookDescription,  GlobVar.secondDummyBookDescription, verifyBook.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.secondDummyBookTitle,  GlobVar.secondDummyBookTitle, verifyBook.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.secondDummyBookIsbn,  GlobVar.secondDummyBookIsbn, verifyBook.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.secondDummyBookNbrPages,  GlobVar.secondDummyBookNbrPages, verifyBook.getNbrPages());       
+        assertEquals("The books description should be: " + GlobVar.bSecondDummyBookDescription,  GlobVar.bSecondDummyBookDescription, verifyBook.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.bSecondDummyBookTitle,  GlobVar.bSecondDummyBookTitle, verifyBook.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.bSecondDummyBookIsbn,  GlobVar.bSecondDummyBookIsbn, verifyBook.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.bSecondDummyBookNbrPages,  GlobVar.bSecondDummyBookNbrPages, verifyBook.getNbrPages());       
         assertEquals("The books id should be: " + newId,  newId, verifyBook.getId()); 
         
         if(response.statusCode() == 201){
@@ -101,10 +101,10 @@ public class PostTest {
         Response getResponse = new BookOperations().getAllBooks();
         int newId = getResponse.jsonPath().getInt("books.book[-1].id") + 1;
         Book book = new Book();
-        book.setDescription(GlobVar.secondDummyBookDescription);
-        book.setTitle(GlobVar.secondDummyBookTitle);
-        book.setIsbn(GlobVar.secondDummyBookIsbn);
-        book.setNbrPages(GlobVar.secondDummyBookNbrPages);
+        book.setDescription(GlobVar.bSecondDummyBookDescription);
+        book.setTitle(GlobVar.bSecondDummyBookTitle);
+        book.setIsbn(GlobVar.bSecondDummyBookIsbn);
+        book.setNbrPages(GlobVar.bSecondDummyBookNbrPages);
         book.setId(newId);
         SingleBook singleBook = new SingleBook(book);
         
@@ -113,10 +113,10 @@ public class PostTest {
         assertEquals("response body should be blank", "", response.body().asString());
         
         Book verifyBook = new BookOperations().fetchLastBook();
-        assertEquals("The books description should be: " + GlobVar.secondDummyBookDescription,  book.getDescription(), verifyBook.getDescription());       
-        assertEquals("The books title should be: " + GlobVar.secondDummyBookTitle,  book.getTitle(), verifyBook.getTitle());       
-        assertEquals("The books isbn should be: " + GlobVar.secondDummyBookIsbn,  book.getIsbn(), verifyBook.getIsbn());       
-        assertEquals("The books page count should be: " + GlobVar.secondDummyBookNbrPages,  book.getNbrPages(), verifyBook.getNbrPages());       
+        assertEquals("The books description should be: " + GlobVar.bSecondDummyBookDescription,  book.getDescription(), verifyBook.getDescription());       
+        assertEquals("The books title should be: " + GlobVar.bSecondDummyBookTitle,  book.getTitle(), verifyBook.getTitle());       
+        assertEquals("The books isbn should be: " + GlobVar.bSecondDummyBookIsbn,  book.getIsbn(), verifyBook.getIsbn());       
+        assertEquals("The books page count should be: " + GlobVar.bSecondDummyBookNbrPages,  book.getNbrPages(), verifyBook.getNbrPages());       
         assertEquals("The books page count should be: " + newId,  book.getId(), verifyBook.getId()); 
         
         if(response.statusCode() == 201){
@@ -131,10 +131,10 @@ public class PostTest {
         Response getResponse = new BookOperations().getAllBooks();
         int lastId = getResponse.jsonPath().getInt("books.book[-1].id");
         Book book = new Book();
-        book.setDescription(GlobVar.secondDummyBookDescription);
-        book.setTitle(GlobVar.secondDummyBookTitle);
-        book.setIsbn(GlobVar.secondDummyBookIsbn);
-        book.setNbrPages(GlobVar.secondDummyBookNbrPages);
+        book.setDescription(GlobVar.bSecondDummyBookDescription);
+        book.setTitle(GlobVar.bSecondDummyBookTitle);
+        book.setIsbn(GlobVar.bSecondDummyBookIsbn);
+        book.setNbrPages(GlobVar.bSecondDummyBookNbrPages);
         book.setId(lastId);
         SingleBook singleBook = new SingleBook(book);
         
@@ -156,7 +156,7 @@ public class PostTest {
         String authorLastName = authorResponse.body().jsonPath().getString("author.lastName");
         Integer authorId = authorResponse.body().jsonPath().getInt("author.id");
         
-        Response postResponse = bookOperations.createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         
@@ -219,7 +219,7 @@ public class PostTest {
         String authorFirstName = authorResponse.body().jsonPath().getString("author.firstName");
         String authorLastName = authorResponse.body().jsonPath().getString("author.lastName");
         
-        Response postResponse = new BookOperations().invalidCreateBookWithAuthorNameButNoAuthorId(authorCountry, authorFirstName, authorLastName, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = new BookOperations().invalidCreateBookWithAuthorNameButNoAuthorId(authorCountry, authorFirstName, authorLastName, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("The status code should be: 400",  400, postResponse.statusCode());
         assertEquals("response body should be Book contained an author with no id field set.",  "Book contained an author with no id field set.", postResponse.body().asString());
     }
@@ -234,7 +234,7 @@ public class PostTest {
         String authorLastName = authorResponse.body().jsonPath().getString("author.lastName");
         Integer authorId = authorResponse.body().jsonPath().getInt("author.id") +1;
         
-        Response postResponse = new BookOperations().createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = new BookOperations().createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
 
         assertEquals("The status code should be: 400",  400, postResponse.statusCode()); 
         assertEquals("response body should be Author does not exist in database.",  "Author does not exist in database.", postResponse.body().asString());
@@ -248,7 +248,7 @@ public class PostTest {
         String authorFirstName = authorResponse.body().jsonPath().getString("author.firstName") +"blarg";
         String authorLastName = authorResponse.body().jsonPath().getString("author.lastName") + "blargtwo";
         Integer authorId = authorResponse.body().jsonPath().getInt("author.id");
-        Response postResponse = new BookOperations().createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = new BookOperations().createBookWithAuthor(authorId, authorBiography, authorCountry, authorFirstName, authorLastName, GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("The status code should be: 400",  400, postResponse.statusCode()); 
         assertEquals("response body should be Author does not exist in database.",  "Author does not exist in database.", postResponse.body().asString());
     }
@@ -257,7 +257,7 @@ public class PostTest {
     
     @Test //this test verifies that you cannot perform a post request to a given book by its bookId
     public void testForbiddenPostToBooksId(){
-        String resourceName = "books/"+GlobVar.dummyBookId;
+        String resourceName = "books/"+GlobVar.aDummyBookId;
         Response response = given().accept(ContentType.JSON).post(GlobVar.BASE_URL+resourceName);
         assertEquals("The status code should be: 405, method not allowed",  405, response.statusCode());  
         assertEquals("response body should be blank",  "", response.body().asString());
@@ -280,7 +280,7 @@ public class PostTest {
         AuthorOperations authorOperations = new AuthorOperations();
         
         //this part makes a new book and verifies that it was created)
-        Response postResponse = bookOperations.createBookWithInput(GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithInput(GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         
@@ -355,7 +355,7 @@ public class PostTest {
         AuthorOperations authorOperations = new AuthorOperations();
         
         //this part makes a new book and verifies that it was created)
-        Response postResponse = bookOperations.createBookWithInput(GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithInput(GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         
@@ -435,7 +435,7 @@ public class PostTest {
         AuthorOperations authorOperations = new AuthorOperations();
         
         //this part makes a new book and verifies that it was created)
-        Response postResponse = bookOperations.createBookWithInput(GlobVar.secondDummyBookDescription, GlobVar.secondDummyBookIsbn, GlobVar.secondDummyBookNbrPages, GlobVar.secondDummyBookPublicationDate, GlobVar.secondDummyBookTitle, GlobVar.secondDummyBookTotalNbrCopies);
+        Response postResponse = bookOperations.createBookWithInput(GlobVar.bSecondDummyBookDescription, GlobVar.bSecondDummyBookIsbn, GlobVar.bSecondDummyBookNbrPages, GlobVar.bSecondDummyBookPublicationDate, GlobVar.bSecondDummyBookTitle, GlobVar.bSecondDummyBookTotalNbrCopies);
         assertEquals("status code should be 201",  201, postResponse.statusCode());
         assertEquals("response body should be blank", "", postResponse.body().asString());
         
