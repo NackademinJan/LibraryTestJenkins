@@ -187,6 +187,32 @@ public class User {
         return isNotEquals;
     }
     
+    public String EqualsBDummyUserPutToADummyUserId(User sample){
+        String isNotEquals = "";
+        if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){
+            isNotEquals = isNotEquals + "User's displayName was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserEmail == null ? sample.getEmail() == null : GlobVar.bDummyUserEmail.equals(sample.getEmail()))){
+            isNotEquals = isNotEquals + "User's email was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserFirstName == null ? sample.getFirstName() == null : GlobVar.bDummyUserFirstName.equals(sample.getFirstName()))){
+            isNotEquals = isNotEquals + "User's firstName was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserLastName == null ? sample.getLastName() == null : GlobVar.bDummyUserLastName.equals(sample.getLastName()))){
+            isNotEquals = isNotEquals + "User's lastName was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserPassword == null ? sample.getPassword() == null : GlobVar.bDummyUserPassword.equals(sample.getPassword()))){
+            isNotEquals = isNotEquals + "User's password was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserPhone == null ? sample.getPhone() == null : GlobVar.bDummyUserPhone.equals(sample.getPhone()))){
+            isNotEquals = isNotEquals + "User's phone number was not the same. ";
+        }
+        if(!(GlobVar.bDummyUserRole == null ? sample.getRole() == null : GlobVar.bDummyUserRole.equals(sample.getRole()))){
+            isNotEquals = isNotEquals + "User's role was not the same. ";
+        }
+        return isNotEquals;
+    }
+    
     public String EqualsBDummyMinimalUser(User sample){
         String isNotEquals = "";
         if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){

@@ -114,7 +114,7 @@ public class PostTest {
     }
     
     @Test //this test attempts to post a book with a specific bookid that does not previously exist in the system, verifies that we get the right statuscode (201) and blank response body. It then verifies that the new book is in the system
-    public void testPostBookwithSpecificNewId(){
+    public void testPostBookWithSpecificNewId(){
         Response getResponse = new BookOperations().getAllBooks();
         int newId = getResponse.jsonPath().getInt("books.book[-1].id") + 1;
         Book book = new Book();
@@ -144,7 +144,7 @@ public class PostTest {
     }
     
     @Test //this test verifies that trying to post a book with a bookId that already exists in the system returns the right statuscode (400) and appropriate response body message
-    public void testInvalidPostBookwithExistingID(){
+    public void testInvalidPostBookWithExistingID(){
         Response getResponse = new BookOperations().getAllBooks();
         int lastId = getResponse.jsonPath().getInt("books.book[-1].id");
         Book book = new Book();

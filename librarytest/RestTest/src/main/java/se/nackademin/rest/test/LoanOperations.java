@@ -190,8 +190,15 @@ public class LoanOperations {
     }
     
     //this method sets/updates a loan specified by the loanId with base values for all fields taken from the global variables in the GlobVar class
-    public Response unPutALoan(Integer loanId){
-        Response unPutLoanAResponse = new LoanOperations().updateLoan(GlobVar.aDummyLoanId, GlobVar.aDummyBookId, GlobVar.aDummyBookTitle, GlobVar.aDummyDateBorrowed, GlobVar.aDummyDateDue,  GlobVar.aDummyUserId, GlobVar.aDummyUserDisplayName);
+    public Response unPutALoan(){
+        Loan loan = new Loan();
+        loan.setId(GlobVar.aDummyLoanId);
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        loan.setDateDue(GlobVar.aDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response unPutLoanAResponse = given().contentType(ContentType.JSON).body(singleLoan).put(GlobVar.BASE_URL+"loans");
 
         return unPutLoanAResponse;
     }

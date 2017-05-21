@@ -113,12 +113,13 @@ public class UserOperations {
     
     
     //this method attempts to update an existing user specified by its displayName, Then returns a json style response of the result
-    public Response updateUser(String displayName, String email, String firstName, String lastName,  String password, String phone, String role){
+    public Response updateUser(Integer userId, String displayName, String email, String firstName, String lastName,  String password, String phone, String role){
         String resourceName = "users";
 
         String postBodyTemplate = 
                         "{\n" 
                     +   "  \"user\": {\n" 
+                    +   "    \"id\": %s,\n"
                     +   "    \"displayName\": \"%s\",\n" 
                     +   "    \"email\": \"%s\",\n" 
                     +   "    \"firstName\": \"%s\",\n" 
@@ -129,7 +130,7 @@ public class UserOperations {
                     +   "  }\n" 
                     +   "}";
         
-        String putBody= String.format(postBodyTemplate, displayName, email, firstName, lastName,  password, phone, role);
+        String putBody= String.format(postBodyTemplate, userId, displayName, email, firstName, lastName,  password, phone, role);
         jsonString = putBody;
         Response putResponse = given().contentType(ContentType.JSON).body(putBody).put(GlobVar.BASE_URL + resourceName);
         return putResponse;
@@ -178,7 +179,7 @@ public class UserOperations {
     
     //this method sets/updates a user specified by the userId with base values for all fields taken from the global variables in the GlobVar class
     public Response unPutUser(Integer userId){
-        Response unPutAuthorResponse = new UserOperations().updateUser(GlobVar.aDummyUserDisplayName, GlobVar.aDummyUserEmail, GlobVar.aDummyUserFirstName, GlobVar.aDummyUserLastName, GlobVar.aDummyUserPassword, GlobVar.aDummyUserPhone, GlobVar.aDummyUserRole);
+        Response unPutAuthorResponse = new UserOperations().updateUser(userId, GlobVar.aDummyUserDisplayName, GlobVar.aDummyUserEmail, GlobVar.aDummyUserFirstName, GlobVar.aDummyUserLastName, GlobVar.aDummyUserPassword, GlobVar.aDummyUserPhone, GlobVar.aDummyUserRole);
 
         return unPutAuthorResponse;
     }

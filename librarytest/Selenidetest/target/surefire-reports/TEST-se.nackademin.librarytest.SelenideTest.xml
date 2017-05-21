@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.librarytest.SelenideTest" time="42.362" tests="4" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.librarytest.SelenideTest" time="41.728" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
     <property name="java.vm.version" value="25.131-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/home/testautomatisering/git6/librarytest/selenidetest"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/testautomatisering/git6/librarytest/Selenidetest"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -14,9 +14,8 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
-    <property name="test" value="se.nackademin.librarytest.SelenideTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/testautomatisering/git6/librarytest/selenidetest"/>
+    <property name="user.dir" value="/home/testautomatisering/git6/librarytest/Selenidetest"/>
     <property name="java.runtime.version" value="1.8.0_131-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed"/>
@@ -43,7 +42,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=se.nackademin.librarytest.SelenideTest -Dmaven.ext.class.path=/home/testautomatisering/netbeans-8.2/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/home/testautomatisering/netbeans-8.2/java/maven-nblib/netbeans-eventspy.jar test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -61,8 +60,8 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testEditBookPublishingDate" classname="se.nackademin.librarytest.SelenideTest" time="14.856"/>
-  <testcase name="testChangeEmailOfUser" classname="se.nackademin.librarytest.SelenideTest" time="7.281"/>
-  <testcase name="testCreateNewAuthor" classname="se.nackademin.librarytest.SelenideTest" time="10.602"/>
-  <testcase name="testBorrowABookAsUser" classname="se.nackademin.librarytest.SelenideTest" time="9.623"/>
+  <testcase name="testEditBookPublishingDate" classname="se.nackademin.librarytest.SelenideTest" time="14.059"/>
+  <testcase name="testChangeEmailOfUser" classname="se.nackademin.librarytest.SelenideTest" time="7.109"/>
+  <testcase name="testCreateNewAuthor" classname="se.nackademin.librarytest.SelenideTest" time="10.9"/>
+  <testcase name="testBorrowABookAsUser" classname="se.nackademin.librarytest.SelenideTest" time="9.66"/>
 </testsuite>

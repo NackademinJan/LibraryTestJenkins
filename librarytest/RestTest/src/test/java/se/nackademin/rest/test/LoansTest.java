@@ -32,29 +32,9 @@ public class LoansTest {
     public static void CreateTwoDummyBooksUsersAndLoans(){
         _logger = LoggerFactory.getLogger(LoansTest.class);
         
-        Response makeADummyBookResponse = BeforeAndAfterOperations.makeADummyBook();
+        Response makeADummyBookResponse = BeforeAndAfterOperations.CreateTwoDummyBooksUsersAndLoans();
         assertEquals("The status code should be: 201",  201, makeADummyBookResponse.statusCode());
         assertEquals("response body should be blank",  "", makeADummyBookResponse.body().asString());
-        
-        Response makeBDummyBookResponse = BeforeAndAfterOperations.makeBDummyBook();
-        assertEquals("The status code should be: 201",  201, makeBDummyBookResponse.statusCode());
-        assertEquals("response body should be blank",  "", makeBDummyBookResponse.body().asString());
-        
-        Response makeADummyUserResponse = BeforeAndAfterOperations.makeADummyUser();
-        assertEquals("The status code should be: 201",  201, makeADummyUserResponse.statusCode());
-        assertEquals("response body should be blank",  "", makeADummyUserResponse.body().asString());
-        
-        Response makeBDummyUserResponse = BeforeAndAfterOperations.makeBDummyUser();
-        assertEquals("The status code should be: 201",  201, makeBDummyUserResponse.statusCode());
-        assertEquals("response body should be blank",  "", makeBDummyUserResponse.body().asString());
-        
-        Response makeADummyLoanResponse = BeforeAndAfterOperations.makeADummyLoan();
-        assertEquals("The status code should be: 201",  201, makeADummyLoanResponse.statusCode());
-        assertEquals("response body should be blank",  "", makeADummyLoanResponse.body().asString());
-        
-        Response makeBDummyLoanResponse = BeforeAndAfterOperations.makeBDummyLoan();
-        assertEquals("The status code should be: 201",  201, makeBDummyLoanResponse.statusCode());
-        assertEquals("response body should be blank",  "", makeBDummyLoanResponse.body().asString());
         
     }
     
@@ -72,31 +52,10 @@ public class LoansTest {
     
     @AfterClass //this method removes the dummies created by the previous method
     public static void RemoveTwoDummyBooksUsersAndLoans(){
-        Response removeADummyLoanResponse = BeforeAndAfterOperations.removeADummyLoan();
+        
+        Response removeADummyLoanResponse = BeforeAndAfterOperations.removeTwoDummyBooksUsersAndLoans();
         assertEquals("The status code should be: 204",  204, removeADummyLoanResponse.statusCode());
         assertEquals("response body should be blank",  "", removeADummyLoanResponse.body().asString());
-        
-        Response removeBDummyLoanResponse = BeforeAndAfterOperations.removeBDummyLoan();
-        assertEquals("The status code should be: 204",  204, removeBDummyLoanResponse.statusCode());
-        assertEquals("response body should be blank",  "", removeBDummyLoanResponse.body().asString());
-        
-        Response removeADummyUserResponse = BeforeAndAfterOperations.removeADummyUser();
-        assertEquals("The status code should be: 204",  204, removeADummyUserResponse.statusCode());
-        assertEquals("response body should be blank",  "", removeADummyUserResponse.body().asString());
-        
-        Response removeBDummyUserResponse = BeforeAndAfterOperations.removeBDummyUser();
-        assertEquals("The status code should be: 204",  204, removeBDummyUserResponse.statusCode());
-        assertEquals("response body should be blank",  "", removeBDummyUserResponse.body().asString());
-        
-        Response removeADummyBookResponse = BeforeAndAfterOperations.removeADummyBook();
-        assertEquals("The status code should be: 204",  204, removeADummyBookResponse.statusCode());
-        assertEquals("response body should be blank",  "", removeADummyBookResponse.body().asString());
-        
-        Response removeBDummyBookResponse = BeforeAndAfterOperations.removeBDummyBook();
-        assertEquals("The status code should be: 204",  204, removeBDummyBookResponse.statusCode());
-        assertEquals("response body should be blank",  "", removeBDummyBookResponse.body().asString());
-        
-        
         
     }
     
@@ -149,8 +108,113 @@ public class LoansTest {
         }
     }
     
-    //@Test
-    public void testPutLoanWithDifferentBook(){
+    
+           //this test currently returns 201 and creates a second copy of a loan with the same user and book (also identical dateBorrowed and dateDue, though those hardly need to be unique) this should NOT happen according to the api. If you want to verify that dupplicate loans are indeed created, either do so manually with httprequester or just comment out the AfterClass cleanup methods though then you have to clean up the 2 dummybooks and dummy authors yourself (the dummyloans are removed automatically if you remove the associated books and/or authors)
+    //@Test //this test tries to post a loan using the same data as has already been entered as part of test-setup. This should not work and we should recieve a 409 status code. 
+    public void testInvalidPostSameLoanTwice(){
+        Loan loan = new Loan();
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        loan.setDateDue(GlobVar.aDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).post(GlobVar.BASE_URL+"loans");
+        assertEquals("The status code should be: 409",  409, response.statusCode());
+        // assertEquals("response body should be blank", "", response.body().asString()); the appropriate response message for this invalid post should probably be along the lines of "this loan already exists", but 
+    }
+    
+    @Test //this test verifies that we cannot create a loan without providing a book, that we get the right response code (400) and response message
+    public void testInvalidPostLoanWithoutBook(){
+        Loan loan = new Loan();
+        loan.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        loan.setDateDue(GlobVar.aDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).post(GlobVar.BASE_URL+"loans");
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be Book does not exist.", "Book does not exist.", response.body().asString());
+    }
+    
+    
+    @Test //this test updates the aDummyLoan with cDummy values for dateBorrowed and dateDue, it verifies that we get the right responsecode (200) and blank response body, then verifies that the loan has had its dates updated and finally restores the dummyloan to its prior status for other tests to work on
+    public void testPutALoan(){
+        Loan loan = new Loan();
+        loan.setId(GlobVar.aDummyLoanId);
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.cDummyDateBorrowed);
+        loan.setDateDue(GlobVar.cDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).put(GlobVar.BASE_URL+"loans");
+        assertEquals("The status code should be: 200",  200, response.statusCode());
+        assertEquals("response body should be blank", "", response.body().asString());
+        
+        Loan putLoan = new LoanOperations().fetchLoan(GlobVar.aDummyLoanId);
+        String isNotEquals = putLoan.EqualsADummyLoanWithCDates(loan);
+        assertEquals("The String isNotEquals should be empty", "", isNotEquals);
+        
+        Response removeResponse = new LoanOperations().unPutALoan();
+        assertEquals("The status code should be: 200",  200, removeResponse.statusCode());
+        assertEquals("response body should be blank", "", response.body().asString());
+    }
+    
+    @Test //this test verifies that we cannot update a loan without a loan id set, not that this is in defiance of the api, though logically there's no better way to tell the program what loan to update without it!
+    public void testInvalidPutLoanWithoutLoanId(){
+        Loan loan = new Loan();
+        
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.cDummyDateBorrowed);
+        loan.setDateDue(GlobVar.cDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).put(GlobVar.BASE_URL+"loans");
+        // if the above put attempt succeeds against expectations, this if-clause will unput the dummyLoan so it still works for other tests
+        if(!(response.statusCode()== 400)){
+            Response removeResponse = new LoanOperations().unPutALoan();
+        }
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be No id set in loan.", "No id set in loan.", response.body().asString());
+    }
+            // this test currently returns statuscode 200 and a blank response body, the api says this should not be allowed. On the other hand dateBorrowed is not listed as an obligatory field. 
+    //@Test //this test verifies that we cannot update a loan without a loan dateBorrowed set, that we get the right response code (400) and message
+    public void testInvalidPutLoanWithoutDateBorrowed(){
+        Loan loan = new Loan();
+        loan.setId(GlobVar.aDummyLoanId);
+        loan.setBook(GlobVar.aDummyLoanBook);
+        
+        loan.setDateDue(GlobVar.aDummyDateDue);
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).put(GlobVar.BASE_URL+"loans");
+        // if the above put attempt succeeds against expectations, this if-clause will unput the dummyLoan so it still works for other tests
+        if(!(response.statusCode()== 400)){
+            Response removeResponse = new LoanOperations().unPutALoan();
+        }
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be No dateBorrowed set in loan.", "No dateBorrowed set in loan.", response.body().asString());
+    }
+    
+            // this test currently returns statuscode 200 and a blank response body, the api says this should not be allowed. On the other hand dateDue is not listed as an obligatory field. 
+    //@Test //this test verifies that we cannot update a loan without a loan dateDue set, that we get the right response code (400) and message
+    public void testInvalidPutLoanWithoutDateDue(){
+        Loan loan = new Loan();
+        loan.setId(GlobVar.aDummyLoanId);
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        
+        loan.setUser(GlobVar.aDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).put(GlobVar.BASE_URL+"loans");
+        // if the above put attempt succeeds against expectations, this if-clause will unput the dummyLoan so it still works for other tests
+        if(!(response.statusCode()== 400)){
+            Response removeResponse = new LoanOperations().unPutALoan();
+        }
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be No dateDue set in loan.", "No dateDue set in loan.", response.body().asString());
+    }
+    
+    @Test // this test verifies that we cannot update a loan and change what book is being loaned with it, that we get the right status response message and statuscode
+    public void testInvalidPutLoanWithDifferentBook(){
         Loan loan = new Loan();
         loan.setId(GlobVar.aDummyLoanId);
         loan.setBook(GlobVar.bDummyLoanBook);
@@ -160,20 +224,17 @@ public class LoansTest {
         SingleLoan singleloan = new SingleLoan(loan);
         
         Response response = given().contentType(ContentType.JSON).body(singleloan).put(GlobVar.BASE_URL+"loans");
-        assertEquals("The status code should be: 200",  200, response.statusCode());
-        assertEquals("response body should be blank", "", response.body().asString());
+        // if the above put attempt succeeds against expectations, this if-clause will unput the dummyLoan so it still works for other tests
+        if(!(response.statusCode()== 400)){
+            Response removeResponse = new LoanOperations().unPutALoan();
+        }
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be Can't update loan with new book.", "Can't update loan with new book.", response.body().asString());
         
-        Loan postedLoan = new LoanOperations().fetchLastLoan();
-        String isNotEquals = postedLoan.EqualsMixedADummyLoanWithBBook(loan);
-        assertEquals("The String isNotEquals should be empty", "", isNotEquals);
-        
-        Response removeResponse = new LoanOperations().unPutALoan(GlobVar.aDummyLoanId);
-        assertEquals("The status code should be: 200",  200, removeResponse.statusCode());
-        assertEquals("response body should be blank", "", response.body().asString());
     }
-    
-    //@Test
-    public void testPutLoanWithDifferentUser(){
+        
+    @Test // this test verifies that we cannot update a loan and change what book is being loaned with it, that we get the right status response message and statuscode (400)
+    public void testInvalidPutLoanWithDifferentUser(){
         Loan loan = new Loan();
         loan.setId(GlobVar.aDummyLoanId);
         loan.setBook(GlobVar.aDummyLoanBook);
@@ -183,17 +244,15 @@ public class LoansTest {
         SingleLoan singleloan = new SingleLoan(loan);
         
         Response response = given().contentType(ContentType.JSON).body(singleloan).put(GlobVar.BASE_URL+"loans");
-        assertEquals("The status code should be: 200",  200, response.statusCode());
-        assertEquals("response body should be blank", "", response.body().asString());
-        
-        Loan postedLoan = new LoanOperations().fetchLastLoan();
-        String isNotEquals = postedLoan.EqualsMixedADummyLoanWithBUser(loan);
-        assertEquals("The String isNotEquals should be empty", "", isNotEquals);
-        
-        Response removeResponse = new LoanOperations().unPutALoan(GlobVar.aDummyLoanId);
-        assertEquals("The status code should be: 200",  200, removeResponse.statusCode());
-        assertEquals("response body should be blank", "", response.body().asString());
+        // if the above put attempt succeeds against expectations, this if-clause will unput the dummyLoan so it still works for other tests
+        if(!(response.statusCode()== 400)){
+            Response removeResponse = new LoanOperations().unPutALoan();
+        }
+        assertEquals("The status code should be: 400",  400, response.statusCode());
+        assertEquals("response body should be Can't update loan with new user.", "Can't update loan with new user.", response.body().asString());
     }
+    
+    
     
     
     @Test //this test verifies that you cannot perform a delete request to delete all loans

@@ -156,4 +156,21 @@ public class Loan {
         return isNotEquals;
     }
     
+    public String EqualsADummyLoanWithCDates(Loan sample){
+        String isNotEquals = "";
+        if(!(GlobVar.aDummyLoanBook.getTitle() == null ? sample.getBook().getTitle() == null : GlobVar.aDummyLoanBook.getTitle().equals(sample.getBook().getTitle()))){
+            isNotEquals = isNotEquals + "Loan's book was not the same. ";
+        }
+        if(!(GlobVar.cDummyDateBorrowed == null ? sample.getDateBorrowed() == null : GlobVar.cDummyDateBorrowed.equals(sample.getDateBorrowed()))){
+            isNotEquals = isNotEquals + "Loan's dateBorrowed was not the same. ";
+        }
+        if(!(GlobVar.cDummyDateDue == null ? sample.getDateDue() == null : GlobVar.cDummyDateDue.equals(sample.getDateDue()))){
+            isNotEquals = isNotEquals + "Loan's dateDue was not the same. ";
+        }
+        if(!(GlobVar.aDummyLoanUser.getDisplayName() == null ? sample.getUser().getDisplayName() == null : GlobVar.aDummyLoanUser.getDisplayName().equals(sample.getUser().getDisplayName()))){
+            isNotEquals = isNotEquals + "Loan's User was not the same. ";
+        }
+        return isNotEquals;
+    }
+    
 }

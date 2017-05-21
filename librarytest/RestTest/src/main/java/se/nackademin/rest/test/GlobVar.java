@@ -21,10 +21,10 @@ public class GlobVar {
     public static String aDummyBookDescription = "dummyTestDescription";
     public static String aDummyBookIsbn = "dummyIsbn";
     public static Integer aDummyBookNbrPages = 7357;
-    public static String aDummyBookPublicationDate = "dummyBookPublicationDate";
+    public static String aDummyBookPublicationDate = "1982-04-22";
     public static String aDummyBookTitle = "dummyTestTitle";
-    public static Integer aDummyBookTotalNbrCopies = 24;
-    
+    public static Integer aDummyBookTotalNbrCopies = 4;
+
     public static Integer bSecondDummyBookId;
     
     public static String bSecondDummyBookDescription = "anotherDummyTestDescription";
@@ -38,7 +38,7 @@ public class GlobVar {
     
     public static String dummyAuthorBio = "dummyAuthorBio";
     public static String dummyAuthorCountry = "dummyAuthorCountry";
-    public static String dummyAuthorFirstName = "1971-12-12";
+    public static String dummyAuthorFirstName = "dummyAuthorFirstName";
     public static String dummyAuthorLastName = "dummyAuthorLastName";
     
     public static String secondDummyAuthorBio = "anotherDummyAuthorBio";
@@ -76,7 +76,7 @@ public class GlobVar {
     public static Integer aDummyLoanId;
     
     public static Book aDummyLoanBook;
-    public static String aDummyDateBorrowed = "1992-04-22";
+    public static String aDummyDateBorrowed = "2001-04-22";
     public static String aDummyDateDue = "2002-04-22";
     public static User aDummyLoanUser;
     
@@ -87,4 +87,7 @@ public class GlobVar {
     public static String bDummyDateDue = "2014-12-12";
     public static User bDummyLoanUser;
     
+    public static Integer cDummyLoanId;
+    public static String cDummyDateBorrowed = "2005-06-06";
+    public static String cDummyDateDue = "2005-06-07";
 }
