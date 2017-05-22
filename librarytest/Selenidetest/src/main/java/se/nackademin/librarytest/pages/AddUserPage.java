@@ -8,6 +8,7 @@ package se.nackademin.librarytest.pages;
 import com.codeborne.selenide.SelenideElement;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 /**
  *
@@ -21,7 +22,8 @@ public class AddUserPage extends MenuPage {
     private SelenideElement passwordField;
     @FindBy(css = "#add-user-button")
     private SelenideElement addUserButton;
-    
+    @FindBy(css = "span.v-radiobutton:nth-child(1) > label:nth-child(2)")
+    private SelenideElement setRoleLibrarianRadioButton;
     
     public void setUsername(String username){
         setTextFieldValue("user name field", username, userNameField);
@@ -33,6 +35,9 @@ public class AddUserPage extends MenuPage {
     
     public void clickAddUserButton(){
         clickButton("add user button", addUserButton);
+    }
+    public void clickSetRoleLibrarianRadioButton(){
+        clickButton("set role to librarian radiobutton", setRoleLibrarianRadioButton);
     }
     
 }

@@ -26,4 +26,12 @@ public class TestBase {
         
         
     }
+    public void littleUp(){
+        System.setProperty("webdriver.chrome.driver", "/home/testautomatisering/seleniumdrivers/chromedriver");
+        System.setProperty("selenide.browser", "Chrome");
+        open("http://localhost:8080/librarytest");
+    }
+
+
 }
+

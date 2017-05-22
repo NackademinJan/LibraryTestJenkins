@@ -22,6 +22,8 @@ public class MenuPage extends PageBase{
     private SelenideElement addUser;
     @FindBy(css = "#side-menu-link-sign-in")
     private SelenideElement signIn;
+    @FindBy(css = "#side-menu-link-sign-out")
+    private SelenideElement signOut;
     @FindBy(css = "#side-menu-link-my-profile")
     private SelenideElement myProfile;
     @FindBy(css ="#side-menu-link-browse-books")
@@ -30,7 +32,8 @@ public class MenuPage extends PageBase{
     private SelenideElement browseAuthors;
     @FindBy(css ="#side-menu-link-add-author")
     private SelenideElement addAuthor;
-    
+    @FindBy(css ="#side-menu-link-add-book")
+    private SelenideElement addBook;
     
     public void navigateToBrowseBooks(){
         clickButton("the browse books link", browseBooks);
@@ -61,6 +64,12 @@ public class MenuPage extends PageBase{
         clickButton("the add author link", addAuthor);
         sleep(1000);
     }
+    public void navigateToAddBook(){
+        clickButton("the add author link", addBook);
+        sleep(1000);
+    }
+    
+    
     
     public void navigateToBook(String bookTitle){
         LOG.log(Level.INFO, "Navigating to the bookpage for book titled: {0}", bookTitle);
@@ -71,6 +80,11 @@ public class MenuPage extends PageBase{
     public void navigateToAuthor(String authorFullName){
         LOG.log(Level.INFO, "Navigating to the authorpage for author named: {0}", authorFullName);
         NavigationHelper.goToAuthor(authorFullName);
+        sleep(1000);
+    }
+    
+    public void navigateToSignOut(){
+        clickButton("the sign out link", signOut);
         sleep(1000);
     }
     

@@ -24,6 +24,8 @@ public class MyProfilePage extends MenuPage{
     private SelenideElement editUserButton;
     @FindBy(css = "#delete-user-button")
     private SelenideElement deleteUserButton;
+    @FindBy(css = "#confirmdialog-ok-button")
+    private SelenideElement okButton;
     @FindBy(css = "td.v-grid-cell:nth-child(1) > a:nth-child(1)")
     private SelenideElement firstBorrowedBookTitle;
     
@@ -47,13 +49,15 @@ public class MyProfilePage extends MenuPage{
         clickButton("title of the first book in the user's borrowed book list", firstBorrowedBookTitle);
     }
     
+    
+    
     public void clickEditUserButton(){
         clickButton("edit user button", editUserButton);
     }
-    /* this method is commented out because it could only be used by the admin-account to remove their own profile which we never want to do as part of a test
+    
     public void clickDeleteUserButton(){
         clickButton("delete user button", deleteUserButton);
         clickButton("yes button", okButton);
     }
-    */
+    
 }

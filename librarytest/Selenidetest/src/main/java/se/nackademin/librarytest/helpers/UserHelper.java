@@ -11,6 +11,7 @@ import se.nackademin.librarytest.pages.EditMyProfilePage;
 import se.nackademin.librarytest.pages.MenuPage;
 import se.nackademin.librarytest.pages.MyProfilePage;
 import se.nackademin.librarytest.pages.SignInPage;
+import se.nackademin.librarytest.pages.SignOutPage;
 
 /**
  *
@@ -27,6 +28,26 @@ public class UserHelper {
         addUserPage.setPassword(password);
         addUserPage.clickAddUserButton();
     }
+    
+    public static void createNewAdmin(String username, String password){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAddUser();
+        
+        AddUserPage addUserPage = page(AddUserPage.class);
+        addUserPage.setUsername(username);
+        addUserPage.setPassword(password);
+        addUserPage.clickSetRoleLibrarianRadioButton();
+        addUserPage.clickAddUserButton();
+    }
+    
+    
+    public static String logOut(){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToSignOut();
+        SignOutPage signOutPage = page(SignOutPage.class);
+        return signOutPage.getSignOutMessage();
+    }
+    
     public static void logInAsUser(String username, String password){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToSignIn();
@@ -57,7 +78,7 @@ public class UserHelper {
         editMyProfilePage.clicksaveUserButton();
     }
     
-    /* This method is commented out because only the admin account can remove users and can only remove themselves in the current UI, this is not something we want to do as part of a test
+    
     public static void removeCurrentUserProfile(){
         MyProfilePage myProfilePage = page(MyProfilePage.class);
         myProfilePage.navigateToMyProfile();
@@ -65,5 +86,5 @@ public class UserHelper {
         myProfilePage.clickDeleteUserButton();
         
     }
-    */
+    
 }

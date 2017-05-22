@@ -8,6 +8,7 @@ package se.nackademin.librarytest.helpers;
 import static com.codeborne.selenide.Selenide.page;
 import java.util.concurrent.ThreadLocalRandom;
 import se.nackademin.librarytest.model.Book;
+import se.nackademin.librarytest.pages.AddBookPage;
 import se.nackademin.librarytest.pages.BookPage;
 import se.nackademin.librarytest.pages.BrowseBooksPage;
 import se.nackademin.librarytest.pages.EditBookPage;
@@ -18,6 +19,26 @@ import se.nackademin.librarytest.pages.MenuPage;
  * @author testautomatisering
  */
 public class BookHelper {
+    
+    
+    
+    public static Integer browseBook(String searchQuery){
+        BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
+        browseBooksPage.navigateToBrowseBooks();
+        browseBooksPage.setTitleField(searchQuery);
+        browseBooksPage.clickSearchBooksButton();
+        browseBooksPage.clickFirstResultTitle();
+        
+        BookPage bookPage = page(BookPage.class);
+        Integer beforeBorrowing = bookPage.getNbrOfCopiesAvailable();
+        bookPage.clickBorrowBookButton();
+        return beforeBorrowing;
+    }
+    
+    public static void deleteBook(){
+        BookPage deleteBookPage = page(BookPage.class);
+        deleteBookPage.clickDeleteBookButton();
+    }
     
     public static Integer borrowBook(String searchQuery){
         BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
@@ -42,6 +63,7 @@ public class BookHelper {
         if(fetchlist == "all"){
             book.setTitle(bookPage.getTitle());
             book.setAuthor(bookPage.getAuthor());
+            book.setIsbn(bookPage.getIsbn());
             book.setDescription(bookPage.getDescription());
             book.setDatePublished(bookPage.getDatePublished());
             book.setNbrAvailable(bookPage.getNbrOfCopiesAvailable());
@@ -52,6 +74,24 @@ public class BookHelper {
         return book;
         }
         return null;
+    }
+    
+    
+    
+    public static void createNewBookWithSomeAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAddBook();
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.setTitleField(bookTitle);
+        addBookPage.clickListOfAuthorsFirstEntry();
+        addBookPage.clickAddSelectedAuthorToBookButton();
+        addBookPage.setDescriptionField(bookDescription);
+        addBookPage.setIsbnField(bookIsbn);
+        addBookPage.setDatePublishedField(bookPublicationDate);
+        addBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies.toString());
+        addBookPage.setNbrOfPagesField(BookNbrPages.toString());
+        addBookPage.clickAddBookButton();
+        
     }
     
     public static void editBookDatePublished(String searchQuery, String datePublished){

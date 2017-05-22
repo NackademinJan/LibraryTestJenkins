@@ -38,7 +38,8 @@ public class BookPage extends MenuPage{
     private SelenideElement returnBookButton;
     @FindBy(css = "#confirmdialog-ok-button")
     private SelenideElement confirmButton;
-    
+    @FindBy(css = "#delete-book-button")
+    private SelenideElement deleteBookButton;
     
     
     public String getTitle(){
@@ -76,6 +77,11 @@ public class BookPage extends MenuPage{
     
     public void clickReturnBookButton(){
         clickButton("return book button", returnBookButton);
+        clickButton("yes button", confirmButton);
+    }
+    
+    public void clickDeleteBookButton(){
+        clickButton("delete book button", deleteBookButton);
         clickButton("yes button", confirmButton);
     }
     

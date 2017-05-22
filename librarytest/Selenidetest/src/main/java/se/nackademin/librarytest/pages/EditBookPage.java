@@ -33,16 +33,18 @@ public class EditBookPage extends BookPage{
     private SelenideElement saveBookButton;
     
     
-    public String getNbrOfPagesTitle(){
+    public String getNbrOfPages(){
         LOG.log(Level.INFO, "Getting the book's pagecount");
         return nbrOfPagesField.getText();
     }
-    public void setNbrOfPagesTitle(String pagecount){
+    public void setNbrOfPages(String pagecount){
         setTextFieldValue("the book's pagecount", pagecount, nbrOfPagesField);
     }
     public void setDatePublished(String date){
         setTextFieldValue("the book's publishing date", date, datePublishedField);
     }
+    
+    
     public void clickSaveBookButton(){
         clickButton("save book button", saveBookButton);
     }

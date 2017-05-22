@@ -5,6 +5,8 @@
  */
 package se.nackademin.librarytest.model;
 
+import se.nackademin.librarytest.helpers.GlobVar;
+
 /**
  *
  * @author testautomatisering
