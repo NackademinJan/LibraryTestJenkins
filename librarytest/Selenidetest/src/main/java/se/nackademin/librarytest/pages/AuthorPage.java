@@ -22,6 +22,8 @@ public class AuthorPage extends MenuPage{
     private SelenideElement countryField;
     @FindBy(css = "#gwt-uid-7")
     private SelenideElement biographyField;
+    @FindBy(css = ".v-grid-cell-focused > a:nth-child(1)")
+    private SelenideElement firstBookInList;
     @FindBy(css = "#edit-author-button")
     private SelenideElement editAuthorButton;
     @FindBy(css = "#delete-author-button")
@@ -42,6 +44,10 @@ public class AuthorPage extends MenuPage{
     public String getBiography(){
         LOG.log(Level.INFO, "Getting Author's biography");
         return biographyField.getText();
+    }
+    
+    public void clickfirstBookInList(){
+        clickButton("first book title in list", firstBookInList);
     }
     
     public void clickEditAuthorButton(){

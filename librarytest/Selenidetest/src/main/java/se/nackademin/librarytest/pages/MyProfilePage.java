@@ -18,6 +18,12 @@ public class MyProfilePage extends MenuPage{
     private static final Logger LOG =  Logger.getLogger(MyProfilePage.class.getName());
     @FindBy(css = "#gwt-uid-5")
     private SelenideElement userName;
+    @FindBy(css = "#gwt-uid-7")
+    private SelenideElement userFirstName;
+    @FindBy(css = "#gwt-uid-9")
+    private SelenideElement userLastName;
+    @FindBy(css = "#gwt-uid-11")
+    private SelenideElement userPhone;
     @FindBy(css= "#gwt-uid-13")
     private SelenideElement userEmail;
     @FindBy(css = "#edit-user")
@@ -33,6 +39,18 @@ public class MyProfilePage extends MenuPage{
     public String getUserName(){
         LOG.log(Level.INFO, "Getting the profile's username");
         return userName.getText();
+    }
+    public String getFirstName(){
+        LOG.log(Level.INFO, "Getting the profile's first name");
+        return userFirstName.getText();
+    }
+    public String getLastName(){
+        LOG.log(Level.INFO, "Getting the profile's last name");
+        return userLastName.getText();
+    }
+    public String getUserPhone(){
+        LOG.log(Level.INFO, "Getting the profile's phone number");
+        return userPhone.getText();
     }
     
     public String getUserEmail(){

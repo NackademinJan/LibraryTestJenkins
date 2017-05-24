@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 import se.nackademin.librarytest.pages.BrowseAuthorsPage;
 import se.nackademin.librarytest.pages.BrowseBooksPage;
 import se.nackademin.librarytest.pages.MenuPage;
+import se.nackademin.librarytest.pages.SignInPage;
 
 /**
  *
@@ -20,13 +21,13 @@ public class PreparationHelper {
     public static void MakeDummyUserAuthorBookAndAdmin(){
         UserHelper.logInAsAdmin();
         
-        UserHelper.createNewAdmin(GlobVar.aDummyUserDisplayName, GlobVar.aDummyUserPassword);
+        UserHelper.createNewLibrarianUserAsLibrarian(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword, GlobVarSelenide.aDummyUserFirstName, GlobVarSelenide.aDummyUserLastName, GlobVarSelenide.aDummyUserPhone, GlobVarSelenide.aDummyUserEmail);
+        //since we cannot delete loaner-role users with the interface, re-runs of this test should not create duplicates of this user, attempting to do so will be tried in another test
+        UserHelper.createNewUserAsLibrarian(GlobVarSelenide.bDummyUserDisplayName, GlobVarSelenide.bDummyUserPassword, GlobVarSelenide.bDummyUserFirstName, GlobVarSelenide.bDummyUserLastName, GlobVarSelenide.bDummyUserPhone, GlobVarSelenide.bDummyUserEmail);
         
-        //UserHelper.createNewUser(GlobVar.bDummyUserDisplayName, GlobVar.bDummyUserPassword);
+        AuthorHelper.createNewAuthor(GlobVarSelenide.dummyAuthorFirstName, GlobVarSelenide.dummyAuthorLastName, GlobVarSelenide.dummyAuthorCountry, GlobVarSelenide.dummyAuthorBio);
         
-        AuthorHelper.createNewAuthor(GlobVar.dummyAuthorFirstName, GlobVar.dummyAuthorLastName, GlobVar.dummyAuthorCountry, GlobVar.dummyAuthorBio);
-        
-        BookHelper.createNewBookWithSomeAuthor(GlobVar.aDummyBookTitle, GlobVar.dummyAuthorFullName, GlobVar.aDummyBookDescription, GlobVar.aDummyBookIsbn, GlobVar.aDummyBookPublicationDate, GlobVar.aDummyBookTotalNbrCopies, GlobVar.aDummyBookNbrPages);
+        BookHelper.createNewBookWithNewestAuthor(GlobVarSelenide.aDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, GlobVarSelenide.aDummyBookDescription, GlobVarSelenide.aDummyBookIsbn, GlobVarSelenide.aDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
         
         //the part below simply makes sure we log out of the admin profile to work from a proper baseline for future tests)
         MenuPage menupage = page(MenuPage.class);
@@ -34,13 +35,13 @@ public class PreparationHelper {
     }
     
     public static void RemoveDummyAuthorBookAndAdmin(){
-        UserHelper.logInAsUser(GlobVar.aDummyUserDisplayName, GlobVar.aDummyUserPassword);
+        UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
         
-        NavigationHelper.goToBook(GlobVar.aDummyBookTitle);
+        NavigationHelper.goToBook(GlobVarSelenide.aDummyBookTitle);
         
         BookHelper.deleteBook();
         
-        AuthorHelper.removeAuthor(GlobVar.dummyAuthorFullName);
+        AuthorHelper.removeAuthor(GlobVarSelenide.dummyAuthorFullName);
         
         //unfortunately regular users cannot delete themselves and admin/librarian users cannot access them for deletion or role change through the interface, they can only access and delete themselves.
         

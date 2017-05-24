@@ -23,7 +23,7 @@ public class GlobVar {
     public static Integer aDummyBookNbrPages = 7357;
     public static String aDummyBookPublicationDate = "1982-04-22";
     public static String aDummyBookTitle = "dummyTestTitle";
-    public static Integer aDummyBookTotalNbrCopies = 4;
+    public static Integer aDummyBookTotalNbrCopies = 2;
 
     public static Integer bSecondDummyBookId;
     
@@ -32,7 +32,7 @@ public class GlobVar {
     public static Integer bSecondDummyBookNbrPages = 123123;
     public static String bSecondDummyBookPublicationDate = "1982-04-22";
     public static String bSecondDummyBookTitle = "anotherDummyTestDescription";
-    public static Integer bSecondDummyBookTotalNbrCopies = 42;
+    public static Integer bSecondDummyBookTotalNbrCopies = 2;
     
     public static Integer dummyAuthorId;
     
@@ -72,6 +72,18 @@ public class GlobVar {
     public static String bDummyUserPassword = "anotherDummyUserPassword";
     public static String bDummyUserPhone = "anotherDummyUserPhone";
     public static String bDummyUserRole = "LIBRARIAN";
+    
+    public static Integer cDummyUserId;
+    
+    public static String cDummyUserDisplayName = "yetanotherDummyUserDisplayName";
+    public static String cDummyUserEmail = "yetanotherDummyUserEmail";
+    public static String cDummyUserFirstName = "yetanotherDummyUserFirstName";
+    public static String cDummyUserLastName = "yetanotherDummyUserLastName";
+    public static String cDummyUserPassword = "yetanotherDummyUserPassword";
+    public static String cDummyUserPhone = "yetanotherDummyUserPhone";
+    public static String cDummyUserRole = "LIBRARIAN";
+    
+    
     
     public static Integer aDummyLoanId;
     

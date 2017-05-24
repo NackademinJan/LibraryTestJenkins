@@ -5,10 +5,12 @@
  */
 package se.nackademin.librarytest.helpers;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 import java.util.concurrent.ThreadLocalRandom;
 import se.nackademin.librarytest.model.Book;
 import se.nackademin.librarytest.pages.AddBookPage;
+import se.nackademin.librarytest.pages.AuthorPage;
 import se.nackademin.librarytest.pages.BookPage;
 import se.nackademin.librarytest.pages.BrowseBooksPage;
 import se.nackademin.librarytest.pages.EditBookPage;
@@ -53,6 +55,30 @@ public class BookHelper {
         return beforeBorrowing;
     }
     
+    public static Book fetchABookThroughAuthor(String searchQuery, String fetchlist){
+        AuthorPage authorPage = page(AuthorPage.class);
+        authorPage.navigateToAuthor(searchQuery);
+        authorPage.clickfirstBookInList();
+        
+        BookPage bookPage = page(BookPage.class);
+        Book book = new Book();
+        
+        if(fetchlist == "all"){
+            book.setTitle(bookPage.getTitle());
+            book.setAuthor(bookPage.getAuthor());
+            book.setIsbn(bookPage.getIsbn());
+            book.setDescription(bookPage.getDescription());
+            book.setDatePublished(bookPage.getDatePublished());
+            book.setNbrAvailable(bookPage.getNbrOfCopiesAvailable());
+            return book;
+        } 
+        if(fetchlist == "date"){
+        book.setDatePublished(bookPage.getDatePublished());
+        return book;
+        }
+        return null;
+    }
+    
     public static Book fetchBook(String searchQuery, String fetchlist){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToBook(searchQuery);
@@ -77,13 +103,14 @@ public class BookHelper {
     }
     
     
-    
-    public static void createNewBookWithSomeAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+    // presently the authorName string doesnt get used cause I cant figure out a good way to tell selenide what option in the list of the left collum to select, not knowing in advance how many authors will be in the system
+    public static void createNewBookWithNewestAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAddBook();
         AddBookPage addBookPage = page(AddBookPage.class);
         addBookPage.setTitleField(bookTitle);
-        addBookPage.clickListOfAuthorsFirstEntry();
+        AuthorToBookTable table =  new AuthorToBookTable($(".v-select-twincol-options"));
+        table.SearchAndClick(authorName);
         addBookPage.clickAddSelectedAuthorToBookButton();
         addBookPage.setDescriptionField(bookDescription);
         addBookPage.setIsbnField(bookIsbn);
@@ -153,4 +180,5 @@ public class BookHelper {
         String randomPublishedDate = year+"-"+month+"-"+day;
         return randomPublishedDate;
     }
+    
 }

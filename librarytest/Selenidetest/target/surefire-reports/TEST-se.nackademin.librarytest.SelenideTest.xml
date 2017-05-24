@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.librarytest.SelenideTest" time="41.078" tests="2" errors="0" skipped="0" failures="1">
+<testsuite name="se.nackademin.librarytest.SelenideTest" time="70.226" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
@@ -61,70 +61,9 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="8.464"/>
-  <testcase name="se.nackademin.librarytest.SelenideTest" classname="se.nackademin.librarytest.SelenideTest" time="32.614">
-    <failure message="Element not found {#side-menu-link-my-profile}&#10;Expected: visible" type="com.codeborne.selenide.ex.ElementNotFound">com.codeborne.selenide.ex.ElementNotFound: Element not found {#side-menu-link-my-profile}
-Expected: visible
-	at sun.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:492)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
-	at com.codeborne.selenide.impl.WebElementSelector.findElement(WebElementSelector.java:28)
-	at com.codeborne.selenide.impl.ElementFinder.getWebElement(ElementFinder.java:56)
-	at com.codeborne.selenide.impl.WebElementSource.checkCondition(WebElementSource.java:44)
-	at com.codeborne.selenide.impl.WebElementSource.findAndAssertElementIsVisible(WebElementSource.java:72)
-	at com.codeborne.selenide.commands.Click.execute(Click.java:14)
-	at com.codeborne.selenide.commands.Click.execute(Click.java:11)
-	at com.codeborne.selenide.commands.Commands.execute(Commands.java:136)
-	at com.codeborne.selenide.impl.SelenideElementProxy.dispatchAndRetry(SelenideElementProxy.java:82)
-	at com.codeborne.selenide.impl.SelenideElementProxy.invoke(SelenideElementProxy.java:58)
-	at com.sun.proxy.$Proxy9.click(Unknown Source)
-	at se.nackademin.librarytest.pages.PageBase.clickButton(PageBase.java:21)
-	at se.nackademin.librarytest.pages.MenuPage.navigateToMyProfile(MenuPage.java:59)
-	at se.nackademin.librarytest.helpers.UserHelper.removeCurrentUserProfile(UserHelper.java:84)
-	at se.nackademin.librarytest.helpers.PreparationHelper.RemoveDummyAuthorBookAndAdmin(PreparationHelper.java:47)
-	at se.nackademin.librarytest.SelenideTest.RemoveDummyAuthorBookAndAdmin(SelenideTest.java:57)
-</failure>
-    <system-err><![CDATA[May 22, 2017 9:27:17 PM se.nackademin.librarytest.SelenideTest RemoveDummyAuthorBookAndAdmin
-INFO: *** Starting to remove library dummies no longer needed ***
-May 22, 2017 9:27:17 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking the sign in link
-May 22, 2017 9:27:18 PM se.nackademin.librarytest.pages.PageBase setTextFieldValue
-INFO: Setting username to aDummyUserDisplayName
-May 22, 2017 9:27:18 PM se.nackademin.librarytest.pages.PageBase setTextFieldValue
-INFO: Setting password to aDummyUserPassword
-May 22, 2017 9:27:19 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking submit button
-May 22, 2017 9:27:19 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking the browse books link
-May 22, 2017 9:27:20 PM se.nackademin.librarytest.pages.PageBase setTextFieldValue
-INFO: Setting title field to dummyTestTitle
-May 22, 2017 9:27:20 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking search button
-May 22, 2017 9:27:21 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking delete book button
-May 22, 2017 9:27:22 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking yes button
-May 22, 2017 9:27:23 PM se.nackademin.librarytest.pages.MenuPage navigateToAuthor
-INFO: Navigating to the authorpage for author named: dummyAuthorFirstName dummyAuthorLastName
-May 22, 2017 9:27:23 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking the browse authors link
-May 22, 2017 9:27:27 PM se.nackademin.librarytest.pages.PageBase setTextFieldValue
-INFO: Setting name field to dummyAuthorFirstName dummyAuthorLastName
-May 22, 2017 9:27:29 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking search button
-May 22, 2017 9:27:31 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking delete author button
-May 22, 2017 9:27:33 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking yes button
-May 22, 2017 9:27:35 PM se.nackademin.librarytest.pages.PageBase clickButton
-INFO: Clicking the my profile link
-]]></system-err>
-  </testcase>
+  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="15.943"/>
+  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="9.66"/>
+  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="14.534"/>
+  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="15.966"/>
+  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="14.123"/>
 </testsuite>

@@ -5,7 +5,7 @@
  */
 package se.nackademin.librarytest.model;
 
-import se.nackademin.librarytest.helpers.GlobVar;
+import se.nackademin.librarytest.helpers.GlobVarSelenide;
 
 /**
  *

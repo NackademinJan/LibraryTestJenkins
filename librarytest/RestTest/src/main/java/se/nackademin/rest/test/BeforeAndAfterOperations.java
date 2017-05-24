@@ -99,6 +99,20 @@ public class BeforeAndAfterOperations {
         return deleteUserResponse;
     }
     
+    public static Response makeCDummyUser(){
+        Response postUserResponse = new UserOperations().createUser(GlobVar.cDummyUserDisplayName, GlobVar.cDummyUserEmail, GlobVar.cDummyUserFirstName, GlobVar.cDummyUserLastName, GlobVar.cDummyUserPassword, GlobVar.cDummyUserPhone, GlobVar.cDummyUserRole);
+        if(( 201 == postUserResponse.getStatusCode())){
+            Response lastUserResponse = new UserOperations().getAllUsers();
+            GlobVar.cDummyUserId = lastUserResponse.jsonPath().getInt("users.user[-1].id");
+        }
+        return postUserResponse;
+    }
+    
+    public static Response removeCDummyUser(){
+        Response deleteUserResponse = new UserOperations().deleteUser(GlobVar.cDummyUserId);
+        return deleteUserResponse;
+    }
+    
     public static Response makeADummyLoan(){
         Response postLoanResponse = new LoanOperations().createLoan(GlobVar.aDummyBookId, GlobVar.aDummyBookTitle, GlobVar.aDummyDateBorrowed, GlobVar.aDummyDateDue, GlobVar.aDummyUserId, GlobVar.aDummyUserDisplayName);
         if(( 201 == postLoanResponse.getStatusCode())){
@@ -132,7 +146,7 @@ public class BeforeAndAfterOperations {
     }
     
     //important, establishing loans depends on there being no prior loans in the system, if there are, comment out line 158 and 174
-    public static Response CreateTwoDummyBooksUsersAndLoans(){
+    public static Response createTwoDummyBooksUsersAndLoans(){
         Response posAtBookResponse = new BookOperations().createBookWithInput(GlobVar.aDummyBookDescription, GlobVar.aDummyBookIsbn, GlobVar.aDummyBookNbrPages, GlobVar.aDummyBookPublicationDate, GlobVar.aDummyBookTitle, GlobVar.aDummyBookTotalNbrCopies);
         if(!( 201 == posAtBookResponse.getStatusCode() )) return posAtBookResponse;
         Response lastABookResponse = new BookOperations().getAllBooks();

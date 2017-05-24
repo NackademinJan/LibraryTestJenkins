@@ -40,6 +40,9 @@ public class BookPage extends MenuPage{
     private SelenideElement confirmButton;
     @FindBy(css = "#delete-book-button")
     private SelenideElement deleteBookButton;
+    @FindBy(css = "#gwt-uid-5 > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > span:nth-child(1)")
+    private SelenideElement firstAuthorOfBook;
+    
     
     
     public String getTitle(){
@@ -68,6 +71,10 @@ public class BookPage extends MenuPage{
     public Integer getNbrOfCopiesAvailable(){
         LOG.log(Level.INFO, "Getting the count of how many copies of the book are available");
         return Integer.valueOf(nbrOfCopiesAvailableField.getText());
+    }
+    
+    public void clickFirstAuthorOfBook(){
+        clickButton("first author of the book link", firstAuthorOfBook);
     }
     
     public void clickBorrowBookButton(){

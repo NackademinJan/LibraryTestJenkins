@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.page;
 import se.nackademin.librarytest.model.Author;
 import se.nackademin.librarytest.pages.AddAuthorPage;
 import se.nackademin.librarytest.pages.AuthorPage;
+import se.nackademin.librarytest.pages.BookPage;
 import se.nackademin.librarytest.pages.MenuPage;
 
 /**
@@ -27,6 +28,27 @@ public class AuthorHelper {
         addAuthorPage.setCountry(country);
         addAuthorPage.setBiography(biography);
         addAuthorPage.clickAddAuthorButton();
+    }
+    
+    public static Author fetchAnAuthorThroughBook(String searchQuery, String fetchlist){
+        BookPage bookPage = page(BookPage.class);
+        bookPage.navigateToBook(searchQuery);
+        bookPage.clickFirstAuthorOfBook();
+        
+        AuthorPage authorPage = page(AuthorPage.class);
+        Author author = new Author();
+        
+        if("all".equals(fetchlist)){
+            author.setFullName(authorPage.getFullName());
+            author.setCountry(authorPage.getCountry());
+            author.setBiography(authorPage.getBiography());
+            return author;
+        } 
+        if("name".equals(fetchlist)){
+            author.setFullName(authorPage.getFullName());
+            return author;
+        }
+        return null;
     }
     public static Author fetchAuthor(String searchQuery, String fetchlist){
         MenuPage menuPage = page(MenuPage.class);

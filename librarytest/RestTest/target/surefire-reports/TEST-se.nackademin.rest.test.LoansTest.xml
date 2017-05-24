@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.rest.test.LoansTest" time="0.43" tests="29" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.rest.test.LoansTest" time="0.501" tests="30" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
@@ -61,33 +61,34 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testGetLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.027"/>
-  <testcase name="testFetchLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.021"/>
-  <testcase name="testPutALoan" classname="se.nackademin.rest.test.LoansTest" time="0.042"/>
-  <testcase name="testForbiddenPostToLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.011"/>
-  <testcase name="testForbiddenPostToLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.004"/>
+  <testcase name="testGetLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.031"/>
+  <testcase name="testFetchLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.016"/>
+  <testcase name="testPutALoan" classname="se.nackademin.rest.test.LoansTest" time="0.041"/>
+  <testcase name="testForbiddenPostToLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.012"/>
+  <testcase name="testForbiddenPostToLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
   <testcase name="testForbiddenPostToLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.007"/>
-  <testcase name="testFetchLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.013"/>
-  <testcase name="testForbiddenPutToLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.006"/>
+  <testcase name="testFetchLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.011"/>
+  <testcase name="testForbiddenPutToLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.007"/>
   <testcase name="testGetAllLoans" classname="se.nackademin.rest.test.LoansTest" time="0.014"/>
-  <testcase name="testInvalidPutLoanWithoutLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.01"/>
+  <testcase name="testInvalidPostLoanWithRemainingCopiesOfBookExhausted" classname="se.nackademin.rest.test.LoansTest" time="0.088"/>
+  <testcase name="testInvalidPutLoanWithoutLoanId" classname="se.nackademin.rest.test.LoansTest" time="0.008"/>
   <testcase name="testFetchLoan" classname="se.nackademin.rest.test.LoansTest" time="0.01"/>
   <testcase name="testGetLoan" classname="se.nackademin.rest.test.LoansTest" time="0.013"/>
   <testcase name="testForbiddenDeleteLoans" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
-  <testcase name="testForbiddenPutToLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.006"/>
-  <testcase name="testInvalidPostLoanWithoutBook" classname="se.nackademin.rest.test.LoansTest" time="0.006"/>
-  <testcase name="testForbiddenDeleteToLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.016"/>
-  <testcase name="testGetLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.016"/>
+  <testcase name="testForbiddenPutToLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.009"/>
+  <testcase name="testInvalidPostLoanWithoutBook" classname="se.nackademin.rest.test.LoansTest" time="0.009"/>
+  <testcase name="testForbiddenDeleteToLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.004"/>
+  <testcase name="testGetLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.013"/>
   <testcase name="testForbiddenDeleteToLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
-  <testcase name="testFetchAllLoans" classname="se.nackademin.rest.test.LoansTest" time="0.013"/>
-  <testcase name="testForbiddenPutToLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
+  <testcase name="testFetchAllLoans" classname="se.nackademin.rest.test.LoansTest" time="0.041"/>
+  <testcase name="testForbiddenPutToLoanOfUserOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.004"/>
   <testcase name="testFetchLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.009"/>
-  <testcase name="testInvalidPutLoanWithDifferentBook" classname="se.nackademin.rest.test.LoansTest" time="0.01"/>
-  <testcase name="testInvalidPutLoanWithDifferentUser" classname="se.nackademin.rest.test.LoansTest" time="0.007"/>
-  <testcase name="testForbiddenPostToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.007"/>
-  <testcase name="testDeleteLoan" classname="se.nackademin.rest.test.LoansTest" time="0.042"/>
-  <testcase name="testPostLoan" classname="se.nackademin.rest.test.LoansTest" time="0.067"/>
-  <testcase name="testGetLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.017"/>
-  <testcase name="testForbiddenPutToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.014"/>
-  <testcase name="testForbiddenDeleteToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.007"/>
+  <testcase name="testInvalidPutLoanWithDifferentBook" classname="se.nackademin.rest.test.LoansTest" time="0.006"/>
+  <testcase name="testInvalidPutLoanWithDifferentUser" classname="se.nackademin.rest.test.LoansTest" time="0.006"/>
+  <testcase name="testForbiddenPostToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
+  <testcase name="testDeleteLoan" classname="se.nackademin.rest.test.LoansTest" time="0.047"/>
+  <testcase name="testPostLoan" classname="se.nackademin.rest.test.LoansTest" time="0.054"/>
+  <testcase name="testGetLoanOfUserById" classname="se.nackademin.rest.test.LoansTest" time="0.012"/>
+  <testcase name="testForbiddenPutToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.004"/>
+  <testcase name="testForbiddenDeleteToLoanOfBookById" classname="se.nackademin.rest.test.LoansTest" time="0.005"/>
 </testsuite>

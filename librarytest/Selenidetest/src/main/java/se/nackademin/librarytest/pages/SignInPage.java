@@ -6,6 +6,7 @@
 package se.nackademin.librarytest.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,8 @@ public class SignInPage extends MenuPage {
     private SelenideElement passwordField;
     @FindBy(css = "#login-button")
     private SelenideElement logInButton;
+    @FindBy(css = ".v-label")
+    private SelenideElement responseLabel;
     
     
     public void setUsername(String username){
@@ -29,6 +32,11 @@ public class SignInPage extends MenuPage {
     
     public void setPassword(String password){
         setTextFieldValue("password", password, passwordField);
+    }
+    
+    public String getresponseLabel(){
+        LOG.log(Level.INFO, "Getting the sign in page's response message");
+        return responseLabel.getText();
     }
     
     public void clickLogin(){

@@ -22,7 +22,8 @@ public class AddBookPage extends BookPage{
     private SelenideElement listOfAuthorsFirstEntry;
     @FindBy(css = ".v-select-twincol-buttons > div:nth-child(1)")
     private SelenideElement addSelectedAuthorToBookButton;
-    // editing a book's list of authors would require implementing a new helper class for handling the system, so not including a reference to the field here
+    @FindBy(css = "div.v-button:nth-child(3)")
+    private SelenideElement removeSelectedAuthorfromBookButton;
     @FindBy(css = "#gwt-uid-9")
     private SelenideElement descriptionField;
     @FindBy(css = "#gwt-uid-13")
@@ -91,6 +92,11 @@ public class AddBookPage extends BookPage{
     public void clickAddSelectedAuthorToBookButton(){
         clickButton("add selected author to book button", addSelectedAuthorToBookButton);
     }
+    
+    public void clickRemoveSelectedAuthorfromBookButton(){
+        clickButton("remove selected author from book button", removeSelectedAuthorfromBookButton);
+    }
+    
     public void clickAddBookButton(){
         clickButton("add book button", addBookButton);
     }

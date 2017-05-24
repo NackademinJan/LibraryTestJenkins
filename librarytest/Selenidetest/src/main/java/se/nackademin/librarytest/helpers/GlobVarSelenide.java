@@ -12,7 +12,7 @@ import se.nackademin.librarytest.model.User;
  *
  * @author testautomatisering
  */
-public class GlobVar {
+public class GlobVarSelenide {
     //this class stores all static variables for relatively easy editing of test data and base url
     public static final String BASE_URL = "http://localhost:8080/librarytest-rest/";
     
@@ -56,22 +56,22 @@ public class GlobVar {
     public static Integer aDummyUserId;
     
     public static String aDummyUserDisplayName = "aDummyUserDisplayName";
-    public static String aDummyUserEmail = "aDummyUserEmail";
     public static String aDummyUserFirstName = "aDummyUserFirstName";
     public static String aDummyUserLastName = "aDummyUserLastName";
     public static String aDummyUserPassword = "aDummyUserPassword";
     public static String aDummyUserPhone = "aDummyUserPhone";
-    public static String aDummyUserRole = "LOANER";
+    public static String aDummyUserEmail = "aDummyUserEmail";
+    public static String aDummyUserRole = "LIBRARIAN";
     
     public static Integer bDummyUserId;
     
-    public static String bDummyUserDisplayName = "anotherDummyUserDisplayName";
-    public static String bDummyUserEmail = "anotherDummyUserEmail";
-    public static String bDummyUserFirstName = "anotherDummyUserFirstName";
-    public static String bDummyUserLastName = "anotherDummyUserLastName";
-    public static String bDummyUserPassword = "anotherDummyUserPassword";
-    public static String bDummyUserPhone = "anotherDummyUserPhone";
-    public static String bDummyUserRole = "LIBRARIAN";
+    public static String bDummyUserDisplayName = "secondDummyUserDisplayName";
+    public static String bDummyUserFirstName = "secondDummyUserFirstName";
+    public static String bDummyUserLastName = "secondDummyUserLastName";
+    public static String bDummyUserPassword = "secondDummyUserPassword";
+    public static String bDummyUserPhone = "secondDummyUserPhone";
+    public static String bDummyUserEmail = "secondDummyUserEmail";
+    public static String bDummyUserRole = "LOANER";
     
     public static Integer aDummyLoanId;
     

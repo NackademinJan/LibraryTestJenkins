@@ -32,7 +32,7 @@ public class LoansTest {
     public static void CreateTwoDummyBooksUsersAndLoans(){
         _logger = LoggerFactory.getLogger(LoansTest.class);
         
-        Response makeADummyBookResponse = BeforeAndAfterOperations.CreateTwoDummyBooksUsersAndLoans();
+        Response makeADummyBookResponse = BeforeAndAfterOperations.createTwoDummyBooksUsersAndLoans();
         assertEquals("The status code should be: 201",  201, makeADummyBookResponse.statusCode());
         assertEquals("response body should be blank",  "", makeADummyBookResponse.body().asString());
         
@@ -122,6 +122,43 @@ public class LoansTest {
         assertEquals("The status code should be: 409",  409, response.statusCode());
         // assertEquals("response body should be blank", "", response.body().asString()); the appropriate response message for this invalid post should probably be along the lines of "this loan already exists", but 
     }
+    @Test //this test tries to post two loans, the first leaves our dummyBook at 0 copies available, the second verifies that trying to loan that book again with a different user returns the appropriate statuscode (409) and response message. it then removes the one successful loan and the extra dummy user that were needed for this test as part of cleanup.
+    public void testInvalidPostLoanWithRemainingCopiesOfBookExhausted(){
+        Response makeCDummyUserResponse = BeforeAndAfterOperations.makeCDummyUser();
+        assertEquals("The status code should be: 201",  201, makeCDummyUserResponse.statusCode());
+        assertEquals("response body should be blank",  "", makeCDummyUserResponse.body().asString());
+        
+        Loan loan = new Loan();
+        loan.setBook(GlobVar.aDummyLoanBook);
+        loan.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        loan.setDateDue(GlobVar.aDummyDateDue);
+        loan.setUser(GlobVar.bDummyLoanUser);
+        SingleLoan singleLoan = new SingleLoan(loan);
+        Response response = given().contentType(ContentType.JSON).body(singleLoan).post(GlobVar.BASE_URL+"loans");
+        assertEquals("The status code should be: 201",  201, response.statusCode());
+        assertEquals("response body should be blank", "", response.body().asString());
+        
+        Loan loanTwo = new Loan();
+        loanTwo.setBook(GlobVar.aDummyLoanBook);
+        loanTwo.setDateBorrowed(GlobVar.aDummyDateBorrowed);
+        loanTwo.setDateDue(GlobVar.aDummyDateDue);
+        loanTwo.setUser(new UserOperations().fetchLastUser());
+        SingleLoan singleLoanTwo = new SingleLoan(loanTwo);
+        Response responseTwo = given().contentType(ContentType.JSON).body(singleLoanTwo).post(GlobVar.BASE_URL+"loans");
+        assertEquals("The status code should be: 409",  409, responseTwo.statusCode());
+        assertEquals("response body should be: No copies of the book left in inventory.", "No copies of the book left in inventory.", responseTwo.body().asString());
+        
+        if(response.statusCode() == 201){
+            Response removeResponse = new LoanOperations().deleteLastLoan();
+            assertEquals("The status code should be: 204",  204, removeResponse.statusCode());
+            assertEquals("response body should be blank", "", response.body().asString());
+        }
+        if(makeCDummyUserResponse.statusCode() == 201){
+            Response removeCDummyUserResponse = BeforeAndAfterOperations.removeCDummyUser();
+            assertEquals("The status code should be: 204",  204, removeCDummyUserResponse.statusCode());
+            assertEquals("response body should be blank",  "", removeCDummyUserResponse.body().asString());
+        }
+    }
     
     @Test //this test verifies that we cannot create a loan without providing a book, that we get the right response code (400) and response message
     public void testInvalidPostLoanWithoutBook(){
@@ -134,6 +171,8 @@ public class LoansTest {
         assertEquals("The status code should be: 400",  400, response.statusCode());
         assertEquals("response body should be Book does not exist.", "Book does not exist.", response.body().asString());
     }
+    
+    
     
     
     @Test //this test updates the aDummyLoan with cDummy values for dateBorrowed and dateDue, it verifies that we get the right responsecode (200) and blank response body, then verifies that the loan has had its dates updated and finally restores the dummyloan to its prior status for other tests to work on

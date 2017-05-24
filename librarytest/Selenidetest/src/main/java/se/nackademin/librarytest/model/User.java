@@ -5,7 +5,7 @@
  */
 package se.nackademin.librarytest.model;
 
-import se.nackademin.librarytest.helpers.GlobVar;
+import se.nackademin.librarytest.helpers.GlobVarSelenide;
 
 /**
  *
@@ -20,7 +20,7 @@ public class User {
     private String password;
     private String phone;
     private String role;
-
+    
     /**
      * @return the id
      */
@@ -137,25 +137,25 @@ public class User {
 
     public String EqualsADummyUser(User sample){
         String isNotEquals = "";
-        if(!(GlobVar.aDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.aDummyUserDisplayName.equals(sample.getDisplayName()))){
+        if(!(GlobVarSelenide.aDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVarSelenide.aDummyUserDisplayName.equals(sample.getDisplayName()))){
             isNotEquals = isNotEquals + "User's displayName was not the same. ";
         }
-        if(!(GlobVar.aDummyUserEmail == null ? sample.getEmail() == null : GlobVar.aDummyUserEmail.equals(sample.getEmail()))){
+        if(!(GlobVarSelenide.aDummyUserEmail == null ? sample.getEmail() == null : GlobVarSelenide.aDummyUserEmail.equals(sample.getEmail()))){
             isNotEquals = isNotEquals + "User's email was not the same. ";
         }
-        if(!(GlobVar.aDummyUserFirstName == null ? sample.getFirstName() == null : GlobVar.aDummyUserFirstName.equals(sample.getFirstName()))){
+        if(!(GlobVarSelenide.aDummyUserFirstName == null ? sample.getFirstName() == null : GlobVarSelenide.aDummyUserFirstName.equals(sample.getFirstName()))){
             isNotEquals = isNotEquals + "User's firstName was not the same. ";
         }
-        if(!(GlobVar.aDummyUserLastName == null ? sample.getLastName() == null : GlobVar.aDummyUserLastName.equals(sample.getLastName()))){
+        if(!(GlobVarSelenide.aDummyUserLastName == null ? sample.getLastName() == null : GlobVarSelenide.aDummyUserLastName.equals(sample.getLastName()))){
             isNotEquals = isNotEquals + "User's lastName was not the same. ";
         }
-        if(!(GlobVar.aDummyUserPassword == null ? sample.getPassword() == null : GlobVar.aDummyUserPassword.equals(sample.getPassword()))){
+        if(!(GlobVarSelenide.aDummyUserPassword == null ? sample.getPassword() == null : GlobVarSelenide.aDummyUserPassword.equals(sample.getPassword()))){
             isNotEquals = isNotEquals + "User's password was not the same. ";
         }
-        if(!(GlobVar.aDummyUserPhone == null ? sample.getPhone() == null : GlobVar.aDummyUserPhone.equals(sample.getPhone()))){
+        if(!(GlobVarSelenide.aDummyUserPhone == null ? sample.getPhone() == null : GlobVarSelenide.aDummyUserPhone.equals(sample.getPhone()))){
             isNotEquals = isNotEquals + "User's phone number was not the same. ";
         }
-        if(!(GlobVar.aDummyUserRole == null ? sample.getRole() == null : GlobVar.aDummyUserRole.equals(sample.getRole()))){
+        if(!(GlobVarSelenide.aDummyUserRole == null ? sample.getRole() == null : GlobVarSelenide.aDummyUserRole.equals(sample.getRole()))){
             isNotEquals = isNotEquals + "User's role was not the same. ";
         }
         return isNotEquals;
@@ -163,25 +163,25 @@ public class User {
     
     public String EqualsBDummyUser(User sample){
         String isNotEquals = "";
-        if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){
+        if(!(GlobVarSelenide.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVarSelenide.bDummyUserDisplayName.equals(sample.getDisplayName()))){
             isNotEquals = isNotEquals + "User's displayName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserEmail == null ? sample.getEmail() == null : GlobVar.bDummyUserEmail.equals(sample.getEmail()))){
+        if(!(GlobVarSelenide.bDummyUserEmail == null ? sample.getEmail() == null : GlobVarSelenide.bDummyUserEmail.equals(sample.getEmail()))){
             isNotEquals = isNotEquals + "User's email was not the same. ";
         }
-        if(!(GlobVar.bDummyUserFirstName == null ? sample.getFirstName() == null : GlobVar.bDummyUserFirstName.equals(sample.getFirstName()))){
+        if(!(GlobVarSelenide.bDummyUserFirstName == null ? sample.getFirstName() == null : GlobVarSelenide.bDummyUserFirstName.equals(sample.getFirstName()))){
             isNotEquals = isNotEquals + "User's firstName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserLastName == null ? sample.getLastName() == null : GlobVar.bDummyUserLastName.equals(sample.getLastName()))){
+        if(!(GlobVarSelenide.bDummyUserLastName == null ? sample.getLastName() == null : GlobVarSelenide.bDummyUserLastName.equals(sample.getLastName()))){
             isNotEquals = isNotEquals + "User's lastName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserPassword == null ? sample.getPassword() == null : GlobVar.bDummyUserPassword.equals(sample.getPassword()))){
+        if(!(GlobVarSelenide.bDummyUserPassword == null ? sample.getPassword() == null : GlobVarSelenide.bDummyUserPassword.equals(sample.getPassword()))){
             isNotEquals = isNotEquals + "User's password was not the same. ";
         }
-        if(!(GlobVar.bDummyUserPhone == null ? sample.getPhone() == null : GlobVar.bDummyUserPhone.equals(sample.getPhone()))){
+        if(!(GlobVarSelenide.bDummyUserPhone == null ? sample.getPhone() == null : GlobVarSelenide.bDummyUserPhone.equals(sample.getPhone()))){
             isNotEquals = isNotEquals + "User's phone number was not the same. ";
         }
-        if(!(GlobVar.bDummyUserRole == null ? sample.getRole() == null : GlobVar.bDummyUserRole.equals(sample.getRole()))){
+        if(!(GlobVarSelenide.bDummyUserRole == null ? sample.getRole() == null : GlobVarSelenide.bDummyUserRole.equals(sample.getRole()))){
             isNotEquals = isNotEquals + "User's role was not the same. ";
         }
         return isNotEquals;
@@ -189,25 +189,25 @@ public class User {
     
     public String EqualsBDummyUserPutToADummyUserId(User sample){
         String isNotEquals = "";
-        if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){
+        if(!(GlobVarSelenide.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVarSelenide.bDummyUserDisplayName.equals(sample.getDisplayName()))){
             isNotEquals = isNotEquals + "User's displayName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserEmail == null ? sample.getEmail() == null : GlobVar.bDummyUserEmail.equals(sample.getEmail()))){
+        if(!(GlobVarSelenide.bDummyUserEmail == null ? sample.getEmail() == null : GlobVarSelenide.bDummyUserEmail.equals(sample.getEmail()))){
             isNotEquals = isNotEquals + "User's email was not the same. ";
         }
-        if(!(GlobVar.bDummyUserFirstName == null ? sample.getFirstName() == null : GlobVar.bDummyUserFirstName.equals(sample.getFirstName()))){
+        if(!(GlobVarSelenide.bDummyUserFirstName == null ? sample.getFirstName() == null : GlobVarSelenide.bDummyUserFirstName.equals(sample.getFirstName()))){
             isNotEquals = isNotEquals + "User's firstName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserLastName == null ? sample.getLastName() == null : GlobVar.bDummyUserLastName.equals(sample.getLastName()))){
+        if(!(GlobVarSelenide.bDummyUserLastName == null ? sample.getLastName() == null : GlobVarSelenide.bDummyUserLastName.equals(sample.getLastName()))){
             isNotEquals = isNotEquals + "User's lastName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserPassword == null ? sample.getPassword() == null : GlobVar.bDummyUserPassword.equals(sample.getPassword()))){
+        if(!(GlobVarSelenide.bDummyUserPassword == null ? sample.getPassword() == null : GlobVarSelenide.bDummyUserPassword.equals(sample.getPassword()))){
             isNotEquals = isNotEquals + "User's password was not the same. ";
         }
-        if(!(GlobVar.bDummyUserPhone == null ? sample.getPhone() == null : GlobVar.bDummyUserPhone.equals(sample.getPhone()))){
+        if(!(GlobVarSelenide.bDummyUserPhone == null ? sample.getPhone() == null : GlobVarSelenide.bDummyUserPhone.equals(sample.getPhone()))){
             isNotEquals = isNotEquals + "User's phone number was not the same. ";
         }
-        if(!(GlobVar.bDummyUserRole == null ? sample.getRole() == null : GlobVar.bDummyUserRole.equals(sample.getRole()))){
+        if(!(GlobVarSelenide.bDummyUserRole == null ? sample.getRole() == null : GlobVarSelenide.bDummyUserRole.equals(sample.getRole()))){
             isNotEquals = isNotEquals + "User's role was not the same. ";
         }
         return isNotEquals;
@@ -215,13 +215,13 @@ public class User {
     
     public String EqualsBDummyMinimalUser(User sample){
         String isNotEquals = "";
-        if(!(GlobVar.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVar.bDummyUserDisplayName.equals(sample.getDisplayName()))){
+        if(!(GlobVarSelenide.bDummyUserDisplayName == null ? sample.getDisplayName() == null : GlobVarSelenide.bDummyUserDisplayName.equals(sample.getDisplayName()))){
             isNotEquals = isNotEquals + "User's displayName was not the same. ";
         }
-        if(!(GlobVar.bDummyUserPassword == null ? sample.getPassword() == null : GlobVar.bDummyUserPassword.equals(sample.getPassword()))){
+        if(!(GlobVarSelenide.bDummyUserPassword == null ? sample.getPassword() == null : GlobVarSelenide.bDummyUserPassword.equals(sample.getPassword()))){
             isNotEquals = isNotEquals + "User's password was not the same. ";
         }
-        if(!(GlobVar.bDummyUserRole == null ? sample.getRole() == null : GlobVar.bDummyUserRole.equals(sample.getRole()))){
+        if(!(GlobVarSelenide.bDummyUserRole == null ? sample.getRole() == null : GlobVarSelenide.bDummyUserRole.equals(sample.getRole()))){
             isNotEquals = isNotEquals + "User's role was not the same. ";
         }
         return isNotEquals;

@@ -34,7 +34,14 @@ public class MenuPage extends PageBase{
     private SelenideElement addAuthor;
     @FindBy(css ="#side-menu-link-add-book")
     private SelenideElement addBook;
+    @FindBy(css =".v-margin-top > div:nth-child(5) > div:nth-child(1)")
+    private SelenideElement signInMessage;
     
+    
+    public String getSignInMessage(){
+        LOG.log(Level.INFO, "Getting the main page's response message from signing in");
+        return signInMessage.getText();
+    }
     public void navigateToBrowseBooks(){
         clickButton("the browse books link", browseBooks);
         sleep(1000);
@@ -67,9 +74,7 @@ public class MenuPage extends PageBase{
     public void navigateToAddBook(){
         clickButton("the add author link", addBook);
         sleep(1000);
-    }
-    
-    
+    }   
     
     public void navigateToBook(String bookTitle){
         LOG.log(Level.INFO, "Navigating to the bookpage for book titled: {0}", bookTitle);
