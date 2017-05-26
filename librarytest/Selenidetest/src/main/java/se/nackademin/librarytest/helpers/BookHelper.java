@@ -24,22 +24,23 @@ public class BookHelper {
     
     
     
-    public static Integer browseBook(String searchQuery){
+    public static void browseToBook(String searchQuery){
         BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
         browseBooksPage.navigateToBrowseBooks();
         browseBooksPage.setTitleField(searchQuery);
         browseBooksPage.clickSearchBooksButton();
         browseBooksPage.clickFirstResultTitle();
         
-        BookPage bookPage = page(BookPage.class);
-        Integer beforeBorrowing = bookPage.getNbrOfCopiesAvailable();
-        bookPage.clickBorrowBookButton();
-        return beforeBorrowing;
     }
     
     public static void deleteBook(){
         BookPage deleteBookPage = page(BookPage.class);
         deleteBookPage.clickDeleteBookButton();
+    }
+    
+    public static void returnBook(){
+        BookPage returnBookPage = page(BookPage.class);
+        returnBookPage.clickReturnBookButton();
     }
     
     public static Integer borrowBook(String searchQuery){
@@ -54,6 +55,8 @@ public class BookHelper {
         bookPage.clickBorrowBookButton();
         return beforeBorrowing;
     }
+    
+    
     
     public static Book fetchABookThroughAuthor(String searchQuery, String fetchlist){
         AuthorPage authorPage = page(AuthorPage.class);
@@ -102,9 +105,24 @@ public class BookHelper {
         return null;
     }
     
+    //this method is simply to let us test what happens when we enter non-integers into a textfield meant only for Integer data entry
+    public static void invalidCreateNewBookWithAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, String bookTotalNbrCopies, String BookNbrPages){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAddBook();
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.setTitleField(bookTitle);
+        AuthorToBookTable table =  new AuthorToBookTable($(".v-select-twincol-options"));
+        table.SearchAndClick(authorName);
+        addBookPage.clickAddSelectedAuthorToBookButton();
+        addBookPage.setDescriptionField(bookDescription);
+        addBookPage.setIsbnField(bookIsbn);
+        addBookPage.setDatePublishedField(bookPublicationDate);
+        addBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies);
+        addBookPage.setNbrOfPagesField(BookNbrPages);
+        addBookPage.clickAddBookButton();    
+    }
     
-    // presently the authorName string doesnt get used cause I cant figure out a good way to tell selenide what option in the list of the left collum to select, not knowing in advance how many authors will be in the system
-    public static void createNewBookWithNewestAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+    public static void createNewBookWithAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAddBook();
         AddBookPage addBookPage = page(AddBookPage.class);
@@ -117,8 +135,23 @@ public class BookHelper {
         addBookPage.setDatePublishedField(bookPublicationDate);
         addBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies.toString());
         addBookPage.setNbrOfPagesField(BookNbrPages.toString());
-        addBookPage.clickAddBookButton();
-        
+        addBookPage.clickAddBookButton();    
+    }
+    
+    public static void checkErrorSign(){
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.clickErrorSign();
+    }
+    public static void checkErrorSignInButton(){
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.clickErrorSignInButton();
+    }
+    
+    
+    public static String getErrorMessage(){
+        AddBookPage addBookPage = page(AddBookPage.class);
+        String errorMessage = addBookPage.getErrorMessage();
+        return errorMessage;
     }
     
     public static void editBookDatePublished(String searchQuery, String datePublished){

@@ -6,6 +6,7 @@
 package se.nackademin.librarytest.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -30,10 +31,13 @@ public class AddUserPage extends MenuPage {
     private SelenideElement emailField;
     @FindBy(css = "#add-user-button")
     private SelenideElement addUserButton;
-    @FindBy(css = "span.v-radiobutton:nth-child(1) > label:nth-child(2)")
+    @FindBy(css = "span.v-radiobutton:nth-child(1) > label:nth-child(2)")       
     private SelenideElement setRoleLibrarianRadioButton;
     @FindBy(css = "span.v-radiobutton:nth-child(2) > label:nth-child(2)")
     private SelenideElement setRoleLoanerRadioButton;
+    @FindBy(css = ".v-label-undef-w")
+    private SelenideElement errorMessage;
+    
     
     public void setDisplayName(String username){
         setTextFieldValue("display name field", username, displayNameField);
@@ -62,5 +66,10 @@ public class AddUserPage extends MenuPage {
     }
     public void clickSetRoleLoanerRadioButton(){
         clickButton("set role to loaner radiobutton", setRoleLoanerRadioButton);
+    }
+    
+    public String getErrorMessage(){
+        LOG.log(Level.INFO, "Getting error message for faulty data when adding user");
+        return errorMessage.getText();
     }
 }

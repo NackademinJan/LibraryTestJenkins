@@ -6,6 +6,7 @@
 package se.nackademin.librarytest.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -25,6 +26,8 @@ public class AddAuthorPage extends MenuPage {
     private SelenideElement biographyField;
     @FindBy(css = "#add-author-button")
     private SelenideElement addAuthorButton;
+    @FindBy(css = ".v-label-undef-w")
+    private SelenideElement errorMessage;
     
     
     public void setFirstName(String firstName){
@@ -47,4 +50,8 @@ public class AddAuthorPage extends MenuPage {
         clickButton("add author button", addAuthorButton);
     }
     
+    public String getErrorMessage(){
+        LOG.log(Level.INFO, "Getting error message for faulty data when adding author");
+        return errorMessage.getText();
+    }
 }

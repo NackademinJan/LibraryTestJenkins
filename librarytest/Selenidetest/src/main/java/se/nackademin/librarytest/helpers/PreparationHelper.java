@@ -7,6 +7,7 @@ package se.nackademin.librarytest.helpers;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.sleep;
 import se.nackademin.librarytest.pages.BrowseAuthorsPage;
 import se.nackademin.librarytest.pages.BrowseBooksPage;
 import se.nackademin.librarytest.pages.MenuPage;
@@ -20,14 +21,14 @@ public class PreparationHelper {
     
     public static void MakeDummyUserAuthorBookAndAdmin(){
         UserHelper.logInAsAdmin();
-        
+        sleep(1000);
         UserHelper.createNewLibrarianUserAsLibrarian(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword, GlobVarSelenide.aDummyUserFirstName, GlobVarSelenide.aDummyUserLastName, GlobVarSelenide.aDummyUserPhone, GlobVarSelenide.aDummyUserEmail);
         //since we cannot delete loaner-role users with the interface, re-runs of this test should not create duplicates of this user, attempting to do so will be tried in another test
         UserHelper.createNewUserAsLibrarian(GlobVarSelenide.bDummyUserDisplayName, GlobVarSelenide.bDummyUserPassword, GlobVarSelenide.bDummyUserFirstName, GlobVarSelenide.bDummyUserLastName, GlobVarSelenide.bDummyUserPhone, GlobVarSelenide.bDummyUserEmail);
         
         AuthorHelper.createNewAuthor(GlobVarSelenide.dummyAuthorFirstName, GlobVarSelenide.dummyAuthorLastName, GlobVarSelenide.dummyAuthorCountry, GlobVarSelenide.dummyAuthorBio);
         
-        BookHelper.createNewBookWithNewestAuthor(GlobVarSelenide.aDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, GlobVarSelenide.aDummyBookDescription, GlobVarSelenide.aDummyBookIsbn, GlobVarSelenide.aDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
+        BookHelper.createNewBookWithAuthor(GlobVarSelenide.aDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, GlobVarSelenide.aDummyBookDescription, GlobVarSelenide.aDummyBookIsbn, GlobVarSelenide.aDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
         
         //the part below simply makes sure we log out of the admin profile to work from a proper baseline for future tests)
         MenuPage menupage = page(MenuPage.class);

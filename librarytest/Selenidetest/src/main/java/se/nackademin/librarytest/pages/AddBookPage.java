@@ -36,7 +36,13 @@ public class AddBookPage extends BookPage{
     private SelenideElement nbrOfPagesField;
     @FindBy(css = "#add-book-button")
     private SelenideElement addBookButton;
-    
+    @FindBy(css = ".v-errorindicator")
+    private SelenideElement errorSign;
+    @FindBy(css = "#add-book-button > span:nth-child(1).v-errorindicator")
+                   
+    private SelenideElement errorSignInButton;
+    @FindBy(css = ".v-label-undef-w")
+    private SelenideElement errorMessage;
     
     public String getTitleField(){
         LOG.log(Level.INFO, "Getting the book's title");
@@ -84,6 +90,16 @@ public class AddBookPage extends BookPage{
     }
     public void setNbrOfPagesField(String pagecount){
         setTextFieldValue("the book's pagecount", pagecount, nbrOfPagesField);
+    }
+    public void clickErrorSign(){
+        clickButton("the ! sign visible only if there is an error", errorSign);
+    }
+    public void clickErrorSignInButton(){
+        clickButton("the ! sign in the add button visible only if there is an error", errorSignInButton);
+    }
+    public String getErrorMessage(){
+        LOG.log(Level.INFO, "Getting error message for faulty data when adding book");
+        return errorMessage.getText();
     }
     
     public void clickListOfAuthorsFirstEntry(){

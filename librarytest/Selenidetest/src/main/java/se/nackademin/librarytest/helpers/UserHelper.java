@@ -36,7 +36,7 @@ public class UserHelper {
         addUserPage.clickAddUserButton();
     }
     
-    public static void createNewMinimalUserAsNonLibrarian(String username, String password){
+    public static void createNewMinimal(String username, String password){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAddUser();
         
@@ -80,6 +80,15 @@ public class UserHelper {
         return null;
     }
     
+    public static void goToMyProfilePage(){
+        MyProfilePage myProfilePage = page(MyProfilePage.class);
+        myProfilePage.navigateToMyProfile();
+    }
+    
+    public static void goCurrentUserFirstBorrowedBook(){
+        MyProfilePage myProfilePage = page(MyProfilePage.class);
+        myProfilePage.clickFirstBorrowedBookTitle();
+    }
     
     public static String logOut(){
         MenuPage menuPage = page(MenuPage.class);
@@ -128,6 +137,20 @@ public class UserHelper {
         editMyProfilePage.clicksaveUserButton();
     }
     
+    public static String getCurrentUserProfileEmail(){
+        MyProfilePage myProfilePage = page(MyProfilePage.class);
+        myProfilePage.navigateToMyProfile();
+        String userEmail = myProfilePage.getUserEmail();
+        return userEmail;
+    }
+    
+    public static String getCurrentUserFirstBorrowedBookTitle(){
+        MyProfilePage myProfilePage = page(MyProfilePage.class);
+        myProfilePage.navigateToMyProfile();
+        String usersFirstBorrowedBookTitle = myProfilePage.getFirstBorrowedBookTitle();
+        return usersFirstBorrowedBookTitle;
+    }
+    
     public static void editCurrentUserProfileEmail(String email){
         MyProfilePage myProfilePage = page(MyProfilePage.class);
         myProfilePage.navigateToMyProfile();
@@ -138,6 +161,12 @@ public class UserHelper {
         editMyProfilePage.clicksaveUserButton();
     }
     
+    
+    public static String getErrorMessage(){
+        AddUserPage addUserPage = page(AddUserPage.class);
+        String errorMessage = addUserPage.getErrorMessage();
+        return errorMessage;
+    }
     
     public static void removeCurrentUserProfile(){
         MyProfilePage myProfilePage = page(MyProfilePage.class);

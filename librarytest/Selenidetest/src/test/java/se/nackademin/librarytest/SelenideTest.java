@@ -1,6 +1,5 @@
 package se.nackademin.librarytest;
 
-import static com.codeborne.selenide.Selenide.*;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,14 +10,12 @@ import org.junit.Test;
 import se.nackademin.librarytest.helpers.AuthorHelper;
 import se.nackademin.librarytest.helpers.BookHelper;
 import se.nackademin.librarytest.helpers.GlobVarSelenide;
-import se.nackademin.librarytest.helpers.NavigationHelper;
 import se.nackademin.librarytest.helpers.PreparationHelper;
 import se.nackademin.librarytest.helpers.UserHelper;
 import se.nackademin.librarytest.model.Author;
 import se.nackademin.librarytest.model.Book;
 import se.nackademin.librarytest.model.User;
-import se.nackademin.librarytest.pages.BookPage;
-import se.nackademin.librarytest.pages.MyProfilePage;
+
 
 
 public class SelenideTest extends TestBase{
@@ -71,7 +68,7 @@ public class SelenideTest extends TestBase{
         
         String uuid = UUID.randomUUID().toString().substring(0, 12);
         
-        UserHelper.createNewMinimalUserAsNonLibrarian(uuid, uuid);
+        UserHelper.createNewMinimal(uuid, uuid);
         String loggedInAs = UserHelper.logInAsUser(uuid, uuid);
         assertEquals("sign-in-message should be " + "Logged in as " + uuid +".", "Logged in as " + uuid +".", loggedInAs);
         
@@ -90,15 +87,13 @@ public class SelenideTest extends TestBase{
         
         String uuid = UUID.randomUUID().toString().substring(0, 12);
         
-        UserHelper.createNewMinimalUserAsNonLibrarian(uuid, uuid);
+        UserHelper.createNewMinimal(uuid, uuid);
         String loggedInAs = UserHelper.logInAsUser(uuid, uuid);
         assertEquals("sign-in-message should be " + "Logged in as " + uuid +".", "Logged in as " + uuid +".", loggedInAs);
         
         UserHelper.editCurrentUserProfile(uuid, uuid, uuid, uuid, uuid, uuid);
         
-        MyProfilePage myProfilePage = page(MyProfilePage.class);
-        myProfilePage.navigateToMyProfile();
-        assertEquals("user email should be: " + uuid,  uuid, myProfilePage.getUserEmail());
+        assertEquals("user email should be: " + uuid,  uuid, UserHelper.getCurrentUserProfileEmail());
         
         User verifyLoaner = UserHelper.fetchUser(uuid, uuid, "all");
         assertEquals("The user's displayname should be " +uuid, uuid, verifyLoaner.getDisplayName());
@@ -211,19 +206,19 @@ public class SelenideTest extends TestBase{
         String loggedInAs = UserHelper.logInAsUser(GlobVarSelenide.bDummyUserDisplayName, GlobVarSelenide.bDummyUserPassword);
         assertEquals("sign-in-message should be " + "Logged in as " + GlobVarSelenide.bDummyUserDisplayName +".", "Logged in as " + GlobVarSelenide.bDummyUserDisplayName +".", loggedInAs);
         
-        BookPage bookPage = page(BookPage.class);
+        
         Integer beforeBorrowing = BookHelper.borrowBook(GlobVarSelenide.aDummyBookTitle);
-        String borrowedBookTitle = bookPage.getTitle();
-        Integer afterBorrowingPlusOne = bookPage.getNbrOfCopiesAvailable() +1;
+        Book book = BookHelper.fetchBook(GlobVarSelenide.aDummyBookTitle, "all");
+        String borrowedBookTitle = book.getTitle();
+        Integer afterBorrowingPlusOne = book.getNbrAvailable() +1;
         assertEquals("the number before borrowing should be the same as the number after borrowing + one", beforeBorrowing, afterBorrowingPlusOne);
         
-        MyProfilePage myProfilePage = page(MyProfilePage.class);
-        myProfilePage.navigateToMyProfile();
-        assertEquals("The title of the book in the users borrowed books list should be: " + borrowedBookTitle,  borrowedBookTitle, myProfilePage.getFirstBorrowedBookTitle());
-        myProfilePage.clickFirstBorrowedBookTitle();
-        bookPage.clickReturnBookButton();
-        bookPage.navigateToBook(GlobVarSelenide.aDummyBookTitle);
-        Integer afterReturn = bookPage.getNbrOfCopiesAvailable();
+        UserHelper.goToMyProfilePage();
+        assertEquals("The title of the first book in the users borrowed books list should be: " + borrowedBookTitle,  borrowedBookTitle, UserHelper.getCurrentUserFirstBorrowedBookTitle());
+        UserHelper.goCurrentUserFirstBorrowedBook();
+        BookHelper.returnBook();
+        BookHelper.browseToBook(GlobVarSelenide.aDummyBookTitle);
+        Integer afterReturn = BookHelper.fetchBook(GlobVarSelenide.aDummyBookTitle, "all").getNbrAvailable();
         assertEquals("the number after returning the book should be the same as the number before borrowing", beforeBorrowing, afterReturn);
         
         LOG.log(Level.INFO, "*** Finished testLoanerBorrowAndReturnBook() test ***");
@@ -239,102 +234,103 @@ public class SelenideTest extends TestBase{
         String loggedInAs = UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
         assertEquals("sign-in-message should be " + "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", loggedInAs);
         
-        BookPage bookPage = page(BookPage.class);
         Integer beforeBorrowing = BookHelper.borrowBook(GlobVarSelenide.aDummyBookTitle);
-        String borrowedBookTitle = bookPage.getTitle();
-        Integer afterBorrowingPlusOne = bookPage.getNbrOfCopiesAvailable() +1;
-        assertEquals("the number before borrowing should be the same as the number after borrowing + one. ", beforeBorrowing, afterBorrowingPlusOne);
+        Book book = BookHelper.fetchBook(GlobVarSelenide.aDummyBookTitle, "all");
+        String borrowedBookTitle = book.getTitle();
+        Integer afterBorrowingPlusOne = book.getNbrAvailable() +1;
+        assertEquals("the number before borrowing should be the same as the number after borrowing + one", beforeBorrowing, afterBorrowingPlusOne);
         
-        MyProfilePage myProfilePage = page(MyProfilePage.class);
-        myProfilePage.navigateToMyProfile();
-        assertEquals("The title of the book in the users borrowed books list should be: " + borrowedBookTitle,  borrowedBookTitle, myProfilePage.getFirstBorrowedBookTitle());
-        myProfilePage.clickFirstBorrowedBookTitle();
-        bookPage.clickReturnBookButton();
-        bookPage.navigateToBook(GlobVarSelenide.aDummyBookTitle);
-        Integer afterReturn = bookPage.getNbrOfCopiesAvailable();
+        UserHelper.goToMyProfilePage();
+        assertEquals("The title of the first book in the users borrowed books list should be: " + borrowedBookTitle,  borrowedBookTitle, UserHelper.getCurrentUserFirstBorrowedBookTitle());
+        UserHelper.goCurrentUserFirstBorrowedBook();
+        BookHelper.returnBook();
+        BookHelper.browseToBook(GlobVarSelenide.aDummyBookTitle);
+        Integer afterReturn = BookHelper.fetchBook(GlobVarSelenide.aDummyBookTitle, "all").getNbrAvailable();
         assertEquals("the number after returning the book should be the same as the number before borrowing", beforeBorrowing, afterReturn);
         
         LOG.log(Level.INFO, "*** Finished testLibrarianBorrowAndReturnBook() test ***");
     }
     
-    
-    
-    //@Test // testcase 1
-    public void testCreateNewAuthor(){
-        LOG.log(Level.INFO, "*** Starting testCreateNewAuthor() test ***");
-        UserHelper.logInAsAdmin();
-        String uuid = UUID.randomUUID().toString().substring(0, 12);
-        String Authorname = uuid + " " + uuid;
-        AuthorHelper.createNewAuthor(uuid, uuid, uuid, uuid);
-        Author author = AuthorHelper.fetchAuthor(Authorname, "all");
-        assertEquals("Author's name should be: " + Authorname,  Authorname, author.getFullName());
-        assertEquals("Author's home country should be: " + uuid,  uuid, author.getCountry());
-        assertEquals("Author's biography should be: " + uuid,  uuid, author.getBiography());
+    //@Test //((need a way to find the ! inside the add author button))
+    public void testInvalidDataEntryWhenLibrarianCreatesBook(){
+        LOG.log(Level.INFO, "*** Starting testInvalidDataEntryWhenLibrarianCreatesBook() test ***");
+        UserHelper.logOut();
+        String signOutMessage = UserHelper.logOut();
+        assertEquals("Signout message should be: Not signed in.",  "Not signed in.", signOutMessage);
         
-        //this part removes the new author to keep things tidy, comment out if you want to manually verify that the author was created
-        AuthorHelper.removeAuthor(Authorname);
-        LOG.log(Level.INFO, "*** Finished testCreateNewAuthor() test ***");
+        String loggedInAs = UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
+        assertEquals("sign-in-message should be " + "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", loggedInAs);
+        
+        // these tests are highly sensetive to how the site lets us know that certain data entries are invalid, some fields give us an error message, one, the number of pages, highlights the datafield, and others only give us a ! on the "add book" button (which as of writing this test actually reads "add author" but shouldnt)
+        //the following Tries to create a book while providing invalid values for bookTitle (empty is invalid), Number of pages (non-integer is invalid), number of copies available (again non-integer isinvalid) and inappropriately formatted  date-string (only YYYY-MM-DD is valid)
+        //empty book title is invalid, empty description and isbn is allowed
+        BookHelper.createNewBookWithAuthor("", GlobVarSelenide.dummyAuthorFullName, "", "", GlobVarSelenide.bSecondDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", BookHelper.getErrorMessage());
+        
+        //add book title, change book publication date to an invalid entry
+        BookHelper.createNewBookWithAuthor(GlobVarSelenide.bSecondDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, "", "", "", GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
+        //BookHelper.checkErrorSign(); //this will cause a test error if it fails by being abscent, 
+        
+        //change publication date to proper format, change number of pages to an invalid (non-integer) entry
+        BookHelper.invalidCreateNewBookWithAuthor(GlobVarSelenide.bSecondDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, "", "", GlobVarSelenide.bSecondDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies.toString(), "");
+        BookHelper.checkErrorSign(); //this will cause a test error if it fails by being abscent, 
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", BookHelper.getErrorMessage());
+        
+        //change number of pages to valid integer, change number of books in inventory to invalid (non-integer) entry
+        BookHelper.invalidCreateNewBookWithAuthor(GlobVarSelenide.bSecondDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, "", "", GlobVarSelenide.bSecondDummyBookPublicationDate, "", GlobVarSelenide.aDummyBookNbrPages.toString());
+        BookHelper.checkErrorSignInButton(); //this will cause a test error if it fails by being abscent, 
+        
+        LOG.log(Level.INFO, "*** Finished testInvalidDataEntryWhenLibrarianCreatesBook() test ***");
     }
     
-    //@Test //testcase 2
-    public void testChangeEmailOfUser(){
-        LOG.log(Level.INFO, "*** Starting testChangeEmailOfUser() test ***");
-        String uuid = UUID.randomUUID().toString().substring(0, 12);
+    @Test 
+    public void testInvalidDataEntryWhenLibrarianCreatesAuthor(){
+        LOG.log(Level.INFO, "*** Starting testInvalidDataEntryWhenLibrarianCreatesAuthor() test ***");
+        UserHelper.logOut();
+        String signOutMessage = UserHelper.logOut();
+        assertEquals("Signout message should be: Not signed in.",  "Not signed in.", signOutMessage);
         
-        UserHelper.createNewMinimalUserAsNonLibrarian(uuid, uuid);
-        UserHelper.logInAsUser(uuid, uuid);
-        UserHelper.editCurrentUserProfileEmail(uuid);
+        String loggedInAs = UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
+        assertEquals("sign-in-message should be " + "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", loggedInAs);
         
-        MyProfilePage myProfilePage = page(MyProfilePage.class);
-        myProfilePage.navigateToMyProfile();
-        assertEquals("user email should be: " + uuid,  uuid, myProfilePage.getUserEmail());
+        //the following tries to create an author while providing invalid, empty String values for firstName
+        AuthorHelper.createNewAuthor("", GlobVarSelenide.secondDummyAuthorLastName, GlobVarSelenide.secondDummyAuthorCountry, GlobVarSelenide.secondDummyAuthorBio);
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", AuthorHelper.getErrorMessage());
         
-        //removing users from the system for cleanup purposes is not currently supported with the user interface as only admins can remove users, there is no way for admins to view or alter other users thus the only user the admin account can remove is itself!
-        //if something goes wrong, use the test log to find the randomised uuid generated for name and password to sign in and manually verify what the test has and has not done to the new user or if one was not created after all, etc
+        //the following tries to create an author while providing invalid, empty String values for lastName
+        AuthorHelper.createNewAuthor(GlobVarSelenide.secondDummyAuthorFirstName, "", GlobVarSelenide.dummyAuthorCountry, GlobVarSelenide.dummyAuthorBio);
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", AuthorHelper.getErrorMessage());
         
-        LOG.log(Level.INFO, "*** Finished testChangeEmailOfUser() test ***");
+        //the following tries to create an author while providing invalid, empty String values for country 
+        AuthorHelper.createNewAuthor(GlobVarSelenide.secondDummyAuthorFirstName, GlobVarSelenide.dummyAuthorLastName, "", GlobVarSelenide.dummyAuthorBio);
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", AuthorHelper.getErrorMessage());
+        
+        //the following tries to create an author while providing invalid, empty String values for biography
+        AuthorHelper.createNewAuthor(GlobVarSelenide.secondDummyAuthorFirstName, GlobVarSelenide.secondDummyAuthorLastName, GlobVarSelenide.secondDummyAuthorCountry, "");
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", AuthorHelper.getErrorMessage());
+        
+        LOG.log(Level.INFO, "*** Finished testInvalidDataEntryWhenLibrarianCreatesAuthor() test ***");
     }
     
-    //@Test // testcase 3
-    public void testEditBookPublishingDate(){
-        LOG.log(Level.INFO, "*** Starting testEditBookPublishingDate() test ***");
-        UserHelper.logInAsAdmin();
+    @Test 
+    public void testInvalidDataEntryWhenLibrarianCreatesUser(){
+        LOG.log(Level.INFO, "*** Starting testInvalidDataEntryWhenLibrarianCreatesUser() test ***");
+        UserHelper.logOut();
+        String signOutMessage = UserHelper.logOut();
+        assertEquals("Signout message should be: Not signed in.",  "Not signed in.", signOutMessage);
         
-        String randomPublishedDate = BookHelper.makeRandomPublishDate();
-        BookHelper.editBookDatePublished("Good Omens", randomPublishedDate);
-        Book book = BookHelper.fetchBook("Good Omens", "date");
-        assertEquals("The Book's publishing date should be " +randomPublishedDate, randomPublishedDate, book.getDatePublished());
+        String loggedInAs = UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
+        assertEquals("sign-in-message should be " + "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", "Logged in as " + GlobVarSelenide.aDummyUserDisplayName +".", loggedInAs);
         
-        //this row simply resets Good Omens published date to its original date for cleanlyness purposes. Comment out if you wish to manually verify that the date was changed
-        BookHelper.editBookDatePublished("Good Omens", "1990-05-01");
+        //the following tries to create a user while providing invalid, empty String values for displayName 
+        UserHelper.createNewMinimal("", GlobVarSelenide.bDummyUserPassword);
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", UserHelper.getErrorMessage());
         
-        LOG.log(Level.INFO, "*** Finished testEditBookPublishingDate() test ***");
-    }
-    
-    //@Test //testcase 4 
-    public void testBorrowABookAsUser(){
-        LOG.log(Level.INFO, "*** Starting testBorrowABookAsUser() test ***");
-        String uuid = UUID.randomUUID().toString().substring(0, 12);
+        //the following tries to create a user while providing invalid, empty String values for password 
+        UserHelper.createNewMinimal(GlobVarSelenide.bDummyUserDisplayName, "");
+        assertEquals("Error message should be: Invalid data, please try again.",  "Invalid data, please try again.", UserHelper.getErrorMessage());
         
-        UserHelper.createNewMinimalUserAsNonLibrarian(uuid, uuid);
-        UserHelper.logInAsUser(uuid, uuid);
-        
-        BookPage bookPage = page(BookPage.class);
-        Integer beforeBorrowing = BookHelper.borrowBook("");
-        String borrowedBookTitle = bookPage.getTitle();
-        Integer afterBorrowing = bookPage.getNbrOfCopiesAvailable() + 1;
-        assertEquals("", beforeBorrowing, afterBorrowing);
-        
-        MyProfilePage myProfilePage = page(MyProfilePage.class);
-        myProfilePage.navigateToMyProfile();
-        assertEquals("The title of the book in the users borrowed books list should be: " + borrowedBookTitle,  borrowedBookTitle, myProfilePage.getFirstBorrowedBookTitle());
-        myProfilePage.clickFirstBorrowedBookTitle();
-        bookPage.clickReturnBookButton();
-        
-        //removing users from the system for cleanup purposes is not currently supported with the user interface as only admins can remove users, there is no way for admins to view or alter other users thus the only user the admin account can remove is itself!
-        //if something goes wrong, use the test log to find the randomised uuid generated for name and password to sign in and manually verify what the test has and has not done to the new user or if one was not created after all, etc
-        
-        LOG.log(Level.INFO, "*** Finished testBorrowABookAsUser() test ***");
+        LOG.log(Level.INFO, "*** Finished testInvalidDataEntryWhenLibrarianCreatesUser() test ***");
     }
     
 }

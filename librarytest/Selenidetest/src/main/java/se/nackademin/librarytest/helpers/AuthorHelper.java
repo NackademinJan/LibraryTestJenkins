@@ -78,5 +78,9 @@ public class AuthorHelper {
         
     }
     
-    
+    public static String getErrorMessage(){
+        AddAuthorPage addAuthorPage = page(AddAuthorPage.class);
+        String errorMessage = addAuthorPage.getErrorMessage();
+        return errorMessage;
+    }
 }
