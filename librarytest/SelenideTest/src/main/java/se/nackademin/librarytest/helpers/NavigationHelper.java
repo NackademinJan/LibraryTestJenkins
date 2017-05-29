@@ -7,6 +7,7 @@ package se.nackademin.librarytest.helpers;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.sleep;
 import se.nackademin.librarytest.pages.BrowseAuthorsPage;
 import se.nackademin.librarytest.pages.BrowseBooksPage;
 import se.nackademin.librarytest.pages.MenuPage;
@@ -23,6 +24,7 @@ public class NavigationHelper {
         BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
         browseBooksPage.setTitleField(bookTitle);
         browseBooksPage.clickSearchBooksButton();
+        sleep(500);
         Table table =  new Table($(".v-grid-tablewrapper"));
         table.SearchAndClick(bookTitle, 0);
     }

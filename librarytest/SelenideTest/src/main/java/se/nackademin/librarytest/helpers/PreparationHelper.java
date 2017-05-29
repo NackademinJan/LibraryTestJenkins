@@ -20,8 +20,9 @@ import se.nackademin.librarytest.pages.SignInPage;
 public class PreparationHelper {
     
     public static void MakeDummyUserAuthorBookAndAdmin(){
+        sleep(500);
         UserHelper.logInAsAdmin();
-        sleep(1000);
+        sleep(500);
         UserHelper.createNewLibrarianUserAsLibrarian(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword, GlobVarSelenide.aDummyUserFirstName, GlobVarSelenide.aDummyUserLastName, GlobVarSelenide.aDummyUserPhone, GlobVarSelenide.aDummyUserEmail);
         //since we cannot delete loaner-role users with the interface, re-runs of this test should not create duplicates of this user, attempting to do so will be tried in another test
         UserHelper.createNewUserAsLibrarian(GlobVarSelenide.bDummyUserDisplayName, GlobVarSelenide.bDummyUserPassword, GlobVarSelenide.bDummyUserFirstName, GlobVarSelenide.bDummyUserLastName, GlobVarSelenide.bDummyUserPhone, GlobVarSelenide.bDummyUserEmail);
@@ -36,6 +37,7 @@ public class PreparationHelper {
     }
     
     public static void RemoveDummyAuthorBookAndAdmin(){
+        
         UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
         
         NavigationHelper.goToBook(GlobVarSelenide.aDummyBookTitle);
