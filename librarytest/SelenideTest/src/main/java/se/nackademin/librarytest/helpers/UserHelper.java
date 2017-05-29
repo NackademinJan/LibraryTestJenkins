@@ -91,6 +91,7 @@ public class UserHelper {
     }
     
     public static String logOut(){
+        sleep(500);
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToSignOut();
         SignOutPage signOutPage = page(SignOutPage.class);

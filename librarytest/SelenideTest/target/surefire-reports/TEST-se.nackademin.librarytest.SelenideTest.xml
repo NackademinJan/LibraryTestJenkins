@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.librarytest.SelenideTest" time="108.799" tests="7" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.librarytest.SelenideTest" time="110.988" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
@@ -60,11 +60,11 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.086"/>
-  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.545"/>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="8.617"/>
-  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="10.098"/>
-  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="21.917"/>
-  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.164"/>
-  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="21.372"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.303"/>
+  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.704"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="8.725"/>
+  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="10.235"/>
+  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="22.778"/>
+  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.635"/>
+  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="21.608"/>
 </testsuite>
