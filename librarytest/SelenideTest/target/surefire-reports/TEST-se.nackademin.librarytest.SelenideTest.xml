@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.librarytest.SelenideTest" time="108.876" tests="7" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.librarytest.SelenideTest" time="112.241" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
     <property name="java.vm.version" value="25.131-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/home/testautomatisering/git6/librarytest/Selenidetest"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/testautomatisering/git6/librarytest/SelenideTest"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/testautomatisering/git6/librarytest/Selenidetest"/>
+    <property name="user.dir" value="/home/testautomatisering/git6/librarytest/SelenideTest"/>
     <property name="java.runtime.version" value="1.8.0_131-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed"/>
@@ -60,11 +60,11 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.147"/>
-  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.422"/>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="8.624"/>
-  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="9.93"/>
-  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="22.062"/>
-  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.21"/>
-  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="21.481"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.089"/>
+  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.719"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="9.18"/>
+  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="10.343"/>
+  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="22.865"/>
+  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.393"/>
+  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="22.652"/>
 </testsuite>
