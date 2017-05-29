@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.rest.test.PostTest" time="1.046" tests="18" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.rest.test.PostTest" time="6.268" tests="18" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
@@ -60,22 +60,22 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testInvalidPostBookWithAuthorNameButWrongAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.042"/>
-  <testcase name="testInvalidPostAuthorToBookWithNonxistingBook" classname="se.nackademin.rest.test.PostTest" time="0.091"/>
-  <testcase name="testPostBookWithAuthor" classname="se.nackademin.rest.test.PostTest" time="0.143"/>
-  <testcase name="testForbiddenPostToBooksByAuthorAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.004"/>
-  <testcase name="testPostBookWithSpecificNewIdWithoutBookClass" classname="se.nackademin.rest.test.PostTest" time="0.056"/>
-  <testcase name="testInvalidPostBookWithExistingID" classname="se.nackademin.rest.test.PostTest" time="0.019"/>
-  <testcase name="testInvalidPostAuthorToBookTwice" classname="se.nackademin.rest.test.PostTest" time="0.17"/>
-  <testcase name="testInvalidPostAuthorToBookWithNoAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.112"/>
-  <testcase name="testPostAuthorToBook" classname="se.nackademin.rest.test.PostTest" time="0.171"/>
-  <testcase name="testPostBookWithSpecificNewId" classname="se.nackademin.rest.test.PostTest" time="0.055"/>
-  <testcase name="testPostAuthor" classname="se.nackademin.rest.test.PostTest" time="0.031"/>
-  <testcase name="testPostAuthorWithSpecificNewAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.039"/>
-  <testcase name="testInvalidPostBookWithAuthorIDButWrongAuthorName" classname="se.nackademin.rest.test.PostTest" time="0.023"/>
-  <testcase name="testForbiddenPostToBooksId" classname="se.nackademin.rest.test.PostTest" time="0.005"/>
-  <testcase name="testInvalidPostAuthorWithExistingAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.006"/>
-  <testcase name="testInvalidPostBookWithAuthorNameButNoAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.017"/>
-  <testcase name="testPostBook" classname="se.nackademin.rest.test.PostTest" time="0.058"/>
-  <testcase name="testForbiddenPostToAuthorsId" classname="se.nackademin.rest.test.PostTest" time="0.004"/>
+  <testcase name="testInvalidPostBookWithAuthorNameButWrongAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.052"/>
+  <testcase name="testInvalidPostAuthorToBookWithNonxistingBook" classname="se.nackademin.rest.test.PostTest" time="0.377"/>
+  <testcase name="testPostBookWithAuthor" classname="se.nackademin.rest.test.PostTest" time="0.651"/>
+  <testcase name="testForbiddenPostToBooksByAuthorAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.008"/>
+  <testcase name="testPostBookWithSpecificNewIdWithoutBookClass" classname="se.nackademin.rest.test.PostTest" time="0.369"/>
+  <testcase name="testInvalidPostBookWithExistingID" classname="se.nackademin.rest.test.PostTest" time="0.352"/>
+  <testcase name="testInvalidPostAuthorToBookTwice" classname="se.nackademin.rest.test.PostTest" time="1.116"/>
+  <testcase name="testInvalidPostAuthorToBookWithNoAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.91"/>
+  <testcase name="testPostAuthorToBook" classname="se.nackademin.rest.test.PostTest" time="0.714"/>
+  <testcase name="testPostBookWithSpecificNewId" classname="se.nackademin.rest.test.PostTest" time="0.542"/>
+  <testcase name="testPostAuthor" classname="se.nackademin.rest.test.PostTest" time="0.047"/>
+  <testcase name="testPostAuthorWithSpecificNewAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.296"/>
+  <testcase name="testInvalidPostBookWithAuthorIDButWrongAuthorName" classname="se.nackademin.rest.test.PostTest" time="0.24"/>
+  <testcase name="testForbiddenPostToBooksId" classname="se.nackademin.rest.test.PostTest" time="0.01"/>
+  <testcase name="testInvalidPostAuthorWithExistingAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.009"/>
+  <testcase name="testInvalidPostBookWithAuthorNameButNoAuthorId" classname="se.nackademin.rest.test.PostTest" time="0.032"/>
+  <testcase name="testPostBook" classname="se.nackademin.rest.test.PostTest" time="0.536"/>
+  <testcase name="testForbiddenPostToAuthorsId" classname="se.nackademin.rest.test.PostTest" time="0.007"/>
 </testsuite>
