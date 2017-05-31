@@ -40,9 +40,7 @@ public class PreparationHelper {
         
         UserHelper.logInAsUser(GlobVarSelenide.aDummyUserDisplayName, GlobVarSelenide.aDummyUserPassword);
         
-        NavigationHelper.goToBook(GlobVarSelenide.aDummyBookTitle);
-        
-        BookHelper.deleteBook();
+        BookHelper.removeBook(GlobVarSelenide.aDummyBookTitle);
         
         AuthorHelper.removeAuthor(GlobVarSelenide.dummyAuthorFullName);
         

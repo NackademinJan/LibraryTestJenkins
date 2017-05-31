@@ -33,9 +33,12 @@ public class BookHelper {
         
     }
     
-    public static void deleteBook(){
-        BookPage deleteBookPage = page(BookPage.class);
-        deleteBookPage.clickDeleteBookButton();
+    public static void removeBook(String searchQuery){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBook(searchQuery);
+        BookPage bookPage = page(BookPage.class);
+        bookPage.clickDeleteBookButton();
+        
     }
     
     public static void returnBook(){
@@ -122,6 +125,19 @@ public class BookHelper {
         addBookPage.clickAddBookButton();    
     }
     
+    public static void createNewBook(String bookTitle, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAddBook();
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.setTitleField(bookTitle);
+        addBookPage.setDescriptionField(bookDescription);
+        addBookPage.setIsbnField(bookIsbn);
+        addBookPage.setDatePublishedField(bookPublicationDate);
+        addBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies.toString());
+        addBookPage.setNbrOfPagesField(BookNbrPages.toString());
+        addBookPage.clickAddBookButton();    
+    }
+    
     public static void createNewBookWithAuthor(String bookTitle, String authorName, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAddBook();
@@ -138,20 +154,38 @@ public class BookHelper {
         addBookPage.clickAddBookButton();    
     }
     
+    public static void createNewBookWithTwoAuthors(String bookTitle, String authorNameOne, String authorNameTwo, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAddBook();
+        AddBookPage addBookPage = page(AddBookPage.class);
+        addBookPage.setTitleField(bookTitle);
+        AuthorToBookTable table =  new AuthorToBookTable($(".v-select-twincol-options"));
+        table.SearchAndClick(authorNameOne);
+        table.SearchAndClick(authorNameTwo);
+        addBookPage.clickAddSelectedAuthorToBookButton();
+        addBookPage.setDescriptionField(bookDescription);
+        addBookPage.setIsbnField(bookIsbn);
+        addBookPage.setDatePublishedField(bookPublicationDate);
+        addBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies.toString());
+        addBookPage.setNbrOfPagesField(BookNbrPages.toString());
+        addBookPage.clickAddBookButton();    
+    }
+    
     public static void checkErrorSign(){
         AddBookPage addBookPage = page(AddBookPage.class);
         addBookPage.clickErrorSign();
     }
-    public static void checkErrorSignInButton(){
+    public static int checkErrorSignInButton(){
         AddBookPage addBookPage = page(AddBookPage.class);
-        addBookPage.clickErrorSignInButton();
+        int n = addBookPage.clickErrorSignInsideButton();
+        return n;
     }
     
     
-    public static String getErrorMessage(){
+    public static String getMessage(){
         AddBookPage addBookPage = page(AddBookPage.class);
-        String errorMessage = addBookPage.getErrorMessage();
-        return errorMessage;
+        String Message = addBookPage.getMessage();
+        return Message;
     }
     
     public static void editBookDatePublished(String searchQuery, String datePublished){
@@ -159,7 +193,34 @@ public class BookHelper {
         menuPage.navigateToBook(searchQuery);
         EditBookPage editBookPage = page(EditBookPage.class);
         editBookPage.clickEditBookButton();
-        editBookPage.setDatePublished(datePublished);
+        editBookPage.setDatePublishedField(datePublished);
+        editBookPage.clickSaveBookButton();
+        
+    }
+    
+    public static void editBook(String bookTitleold, String bookTitle, String bookDescription, String bookIsbn, String bookPublicationDate, Integer bookTotalNbrCopies, Integer BookNbrPages){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBook(bookTitleold);
+        EditBookPage editBookPage = page(EditBookPage.class);
+        editBookPage.clickEditBookButton();
+        editBookPage.setTitleField(bookTitle);
+        editBookPage.setDescriptionField(bookDescription);
+        editBookPage.setIsbnField(bookIsbn);
+        editBookPage.setDatePublishedField(bookPublicationDate);
+        editBookPage.setNbrOfCopiesInInventoryField(bookTotalNbrCopies.toString());
+        editBookPage.setNbrOfPagesField(BookNbrPages.toString());
+        editBookPage.clickSaveBookButton();
+        
+    }
+    
+    public static void unEditBookAuthor(String searchQuery, String authorFullName){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBook(searchQuery);
+        EditBookPage editBookPage = page(EditBookPage.class);
+        editBookPage.clickEditBookButton();
+        AuthorToBookTable table =  new AuthorToBookTable($(".v-select-twincol-selections"));
+        table.SearchAndClick(authorFullName);
+        editBookPage.clickRemoveSelectedAuthorfromBookButton();
         editBookPage.clickSaveBookButton();
         
     }

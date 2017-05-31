@@ -19,6 +19,7 @@ public class Book {
     private String isbn;
     private String datePublished;
     private Integer nbrAvailable;
+    private Integer nbrPages;
 
     /**
      * @return the id
@@ -116,6 +117,20 @@ public class Book {
      */
     public void setNbrAvailable(Integer nbrAvailable) {
         this.nbrAvailable = nbrAvailable;
+    }
+
+    /**
+     * @return the nbrPages
+     */
+    public Integer getNbrPages() {
+        return nbrPages;
+    }
+
+    /**
+     * @param nbrPages the nbrPages to set
+     */
+    public void setNbrPages(Integer nbrPages) {
+        this.nbrPages = nbrPages;
     }
     
 }

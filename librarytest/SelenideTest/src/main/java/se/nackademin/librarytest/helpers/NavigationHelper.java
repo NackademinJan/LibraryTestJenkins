@@ -29,6 +29,8 @@ public class NavigationHelper {
         table.SearchAndClick(bookTitle, 0);
     }
     
+    
+    
     public static void goToAuthor(String authorFullName){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToBrowseAuthors();
@@ -37,6 +39,17 @@ public class NavigationHelper {
         browseAuthorsPage.clickSearchAuthorsButton();
         Table table =  new Table($(".v-grid-tablewrapper"));
         table.SearchAndClick(authorFullName, 0);
+    }
+    
+    public static void goToAuthorOfBook(String bookTitle, String authorFullName){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBrowseBooks();
+        BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
+        browseBooksPage.setTitleField(bookTitle);
+        browseBooksPage.clickSearchBooksButton();
+        sleep(500);
+        Table table =  new Table($(".v-grid-tablewrapper"));
+        table.SearchAndClick(authorFullName, 1);
     }
     
 }

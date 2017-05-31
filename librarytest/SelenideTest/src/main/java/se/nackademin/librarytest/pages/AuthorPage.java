@@ -5,6 +5,7 @@
  */
 package se.nackademin.librarytest.pages;
 
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,5 +59,14 @@ public class AuthorPage extends MenuPage{
         clickButton("delete author button", deleteAuthorButton);
         clickButton("yes button", okButton);
     }
-    
+    public int cantFindEditAuthorButton(){
+        LOG.log(Level.INFO, "Checking that Edit Aytgir Button is not visible");
+        int n = $$("#edit-author-button").size();
+        return n;
+    }
+    public int cantFindDeleteAuthorButton(){
+        LOG.log(Level.INFO, "Checking that Delete Author Button is not visible");
+        int n = $$("#delete-author-button").size();
+        return n;
+    }
 }

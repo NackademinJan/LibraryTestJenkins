@@ -50,8 +50,8 @@ public class AddAuthorPage extends MenuPage {
         clickButton("add author button", addAuthorButton);
     }
     
-    public String getErrorMessage(){
-        LOG.log(Level.INFO, "Getting error message for faulty data when adding author");
+    public String getMessage(){
+        LOG.log(Level.INFO, "Getting message produced when adding author");
         return errorMessage.getText();
     }
 }

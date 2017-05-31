@@ -5,6 +5,7 @@
  */
 package se.nackademin.librarytest.pages;
 
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,6 +96,25 @@ public class BookPage extends MenuPage{
     public void clickEditBookButton(){
         clickButton("edit book button", editBookButton);
     }
-    
+    public int cantFindEditBookButton(){
+        LOG.log(Level.INFO, "Checking that Edit Book Button is not visible");
+        int n = $$("#edit-book-button").size();
+        return n;
+    }
+    public int cantFindBorrowBookButton(){
+        LOG.log(Level.INFO, "Checking that Borrow Book Button is not visible");
+        int n = $$("#borrow-book-button").size();
+        return n;
+    }
+    public int cantFindReturnBookButton(){
+        LOG.log(Level.INFO, "Checking that Return Book Button is not visible");
+        int n = $$("#return-book-button").size();
+        return n;
+    }
+    public int cantFindDeleteBookButton(){
+        LOG.log(Level.INFO, "Checking that Delete Book Button is not visible");
+        int n = $$("#delete-book-button").size();
+        return n;
+    }
     
 }

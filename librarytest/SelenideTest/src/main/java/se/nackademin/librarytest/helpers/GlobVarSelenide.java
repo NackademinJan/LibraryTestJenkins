@@ -30,9 +30,17 @@ public class GlobVarSelenide {
     public static String bSecondDummyBookDescription = "anotherDummyTestDescription";
     public static String bSecondDummyBookIsbn = "anotherDummyIsbn";
     public static Integer bSecondDummyBookNbrPages = 123123;
-    public static String bSecondDummyBookPublicationDate = "1982-04-22";
+    public static String bSecondDummyBookPublicationDate = "1982-04-20";
     public static String bSecondDummyBookTitle = "anotherDummyTestDescription";
     public static Integer bSecondDummyBookTotalNbrCopies = 42;
+    
+    public static String cDummyBookDescription = "yetAnotherDummyTestDescription";
+    public static String cDummyBookIsbn = "yetAnotherDummyIsbn";
+    public static Integer cDummyBookNbrPages = 567367;
+    public static String cDummyBookPublicationDate = "1984-08-12";
+    public static String cDummyBookTitle = "anotherDummyTestDescription";
+    public static Integer cDummyBookTotalNbrCopies = 34;
+    
     
     public static Integer dummyAuthorId;
     public static String dummyAuthorFullName = "dummyAuthorFirstName dummyAuthorLastName";
@@ -41,13 +49,14 @@ public class GlobVarSelenide {
     public static String dummyAuthorFirstName = "dummyAuthorFirstName";
     public static String dummyAuthorLastName = "dummyAuthorLastName";
     
+    public static String secondDummyAuthorFullName = "anotherDummyAuthorFirstName anotherDummyAuthorLastName";
     public static String secondDummyAuthorBio = "anotherDummyAuthorBio";
     public static String secondDummyAuthorCountry = "anotherDummyAuthorCountry";
     public static String secondDummyAuthorFirstName = "anotherDummyAuthorFirstName";
     public static String secondDummyAuthorLastName = "anotherDummyAuthorLastName";
     
     public static Integer thirdDummyAuthorId;
-    
+    public static String thirdDummyAuthorFullName = "andYetAThirdDummyAuthorFirstName andYetAThirdDummyAuthorLastName";
     public static String thirdDummyAuthorBio = "andYetAThirdDummyAuthorBio";
     public static String thirdDummyAuthorCountry = "andYetAThirdDummyAuthorCountry";
     public static String thirdDummyAuthorFirstName = "andYetAThirdDummyAuthorFirstName";
@@ -72,6 +81,15 @@ public class GlobVarSelenide {
     public static String bDummyUserPhone = "secondDummyUserPhone";
     public static String bDummyUserEmail = "secondDummyUserEmail";
     public static String bDummyUserRole = "LOANER";
+    
+    public static String cDummyUserDisplayName = "thirdDummyUserDisplayName";
+    public static String cDummyUserFirstName = "thirdDummyUserFirstName";
+    public static String cDummyUserLastName = "thirdDummyUserLastName";
+    public static String cDummyUserPassword = "thirdDummyUserPassword";
+    public static String cDummyUserPhone = "thirdDummyUserPhone";
+    public static String cDummyUserEmail = "thirdDummyUserEmail";
+    public static String cDummyUserRole = "LIBRARIAN";
+    
     
     public static Integer aDummyLoanId;
     

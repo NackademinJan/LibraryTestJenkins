@@ -68,8 +68,8 @@ public class AddUserPage extends MenuPage {
         clickButton("set role to loaner radiobutton", setRoleLoanerRadioButton);
     }
     
-    public String getErrorMessage(){
-        LOG.log(Level.INFO, "Getting error message for faulty data when adding user");
+    public String getMessage(){
+        LOG.log(Level.INFO, "Getting message produced when adding user");
         return errorMessage.getText();
     }
 }

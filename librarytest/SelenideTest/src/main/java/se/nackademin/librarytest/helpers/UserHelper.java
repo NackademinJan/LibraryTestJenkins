@@ -136,6 +136,7 @@ public class UserHelper {
         editMyProfilePage.setPhone(phone);
         editMyProfilePage.setUserEmail(email);
         editMyProfilePage.clicksaveUserButton();
+        sleep(500);
     }
     
     public static String getCurrentUserProfileEmail(){
@@ -163,10 +164,10 @@ public class UserHelper {
     }
     
     
-    public static String getErrorMessage(){
+    public static String getMessage(){
         AddUserPage addUserPage = page(AddUserPage.class);
-        String errorMessage = addUserPage.getErrorMessage();
-        return errorMessage;
+        String Message = addUserPage.getMessage();
+        return Message;
     }
     
     public static void removeCurrentUserProfile(){

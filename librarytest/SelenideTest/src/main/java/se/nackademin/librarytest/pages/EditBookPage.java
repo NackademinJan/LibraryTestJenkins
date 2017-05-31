@@ -18,7 +18,12 @@ public class EditBookPage extends BookPage{
     private static final Logger LOG =  Logger.getLogger(EditBookPage.class.getName());
     @FindBy(css = "#gwt-uid-3")
     private SelenideElement titleField;
-    // editing a book's list of authors would require implementing a new helper class for handling the system, so not including a reference to the field here
+    @FindBy(css = ".v-select-twincol-options > option:nth-child(1)")
+    private SelenideElement listOfAuthorsFirstEntry;
+    @FindBy(css = ".v-select-twincol-buttons > div:nth-child(1)")
+    private SelenideElement addSelectedAuthorToBookButton;
+    @FindBy(css = "div.v-button:nth-child(3)")
+    private SelenideElement removeSelectedAuthorfromBookButton;
     @FindBy(css = "#gwt-uid-9")
     private SelenideElement descriptionField;
     @FindBy(css = "#gwt-uid-13")
@@ -32,18 +37,58 @@ public class EditBookPage extends BookPage{
     @FindBy(css = "#save-book-button")
     private SelenideElement saveBookButton;
     
-    
-    public String getNbrOfPages(){
+    public String getTitleField(){
+        LOG.log(Level.INFO, "Getting the book's pagecount");
+        return titleField.getText();
+    }
+    public void setTitleField(String title){
+        setTextFieldValue("the book's title", title, titleField);
+    }
+    public String getDescriptionField(){
+        LOG.log(Level.INFO, "Getting the book's description");
+        return descriptionField.getText();
+    }
+    public void setDescriptionField(String title){
+        setTextFieldValue("the book's description", title, descriptionField);
+    }
+    public String getIsbnField(){
+        LOG.log(Level.INFO, "Getting the book's isbn");
+        return isbnField.getText();
+    }
+    public void setIsbnField(String isbn){
+        setTextFieldValue("the book's isbn", isbn, isbnField);
+    }
+    public String getDatePublishedField(){
+        LOG.log(Level.INFO, "Getting the book's publishing date");
+        return datePublishedField.getText();
+    }
+    public void setDatePublishedField(String date){
+        setTextFieldValue("the book's publishing date", date, datePublishedField);
+    }
+    public String getNbrOfCopiesInInventoryField(){
+        LOG.log(Level.INFO, "Getting the book's number of copies in inventory");
+        return nbrOfCopiesInInventoryField.getText();
+    }
+    public void setNbrOfCopiesInInventoryField(String pagecount){
+        setTextFieldValue("the book's number of copies in inventory", pagecount, nbrOfCopiesInInventoryField);
+    }
+    public String getNbrOfPagesField(){
         LOG.log(Level.INFO, "Getting the book's pagecount");
         return nbrOfPagesField.getText();
     }
-    public void setNbrOfPages(String pagecount){
+    public void setNbrOfPagesField(String pagecount){
         setTextFieldValue("the book's pagecount", pagecount, nbrOfPagesField);
     }
-    public void setDatePublished(String date){
-        setTextFieldValue("the book's publishing date", date, datePublishedField);
-    }
     
+    public void clickRemoveSelectedAuthorfromBookButton(){
+        clickButton("remove selected author from book button", removeSelectedAuthorfromBookButton);
+    }
+    public void clickListOfAuthorsFirstEntry(){
+        clickButton("first entry in list of authors available", listOfAuthorsFirstEntry);
+    }
+    public void clickAddSelectedAuthorToBookButton(){
+        clickButton("add selected author to book button", addSelectedAuthorToBookButton);
+    }
     
     public void clickSaveBookButton(){
         clickButton("save book button", saveBookButton);

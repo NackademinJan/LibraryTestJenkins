@@ -10,6 +10,7 @@ import se.nackademin.librarytest.model.Author;
 import se.nackademin.librarytest.pages.AddAuthorPage;
 import se.nackademin.librarytest.pages.AuthorPage;
 import se.nackademin.librarytest.pages.BookPage;
+import se.nackademin.librarytest.pages.EditAuthorPage;
 import se.nackademin.librarytest.pages.MenuPage;
 
 /**
@@ -50,6 +51,28 @@ public class AuthorHelper {
         }
         return null;
     }
+    
+    public static Author fetchAnAuthorThroughBookList(String bookSearchQuery, String authorSearchQuery, String fetchlist){
+        BookPage bookPage = page(BookPage.class);
+        bookPage.navigateToAuthorOfBook(bookSearchQuery, authorSearchQuery);
+        
+        AuthorPage authorPage = page(AuthorPage.class);
+        Author author = new Author();
+        
+        if("all".equals(fetchlist)){
+            author.setFullName(authorPage.getFullName());
+            author.setCountry(authorPage.getCountry());
+            author.setBiography(authorPage.getBiography());
+            return author;
+        } 
+        if("name".equals(fetchlist)){
+            author.setFullName(authorPage.getFullName());
+            return author;
+        }
+        return null;
+    }
+    
+    
     public static Author fetchAuthor(String searchQuery, String fetchlist){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAuthor(searchQuery);
@@ -70,6 +93,19 @@ public class AuthorHelper {
         return null;
     }
     
+    public static void editAuthor(String authorName, String authorFirstName, String authorLastName, String authorCountry, String authorBio){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToAuthor(authorName);
+        EditAuthorPage editAuthorPage = page(EditAuthorPage.class);
+        editAuthorPage.clickEditAuthorButton();
+        editAuthorPage.setFirstName(authorFirstName);
+        editAuthorPage.setLastName(authorLastName);
+        editAuthorPage.setCountry(authorCountry);
+        editAuthorPage.setBiography(authorBio);
+        editAuthorPage.clickSaveAuthorButton();
+        
+    }
+    
     public static void removeAuthor(String searchQuery){
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToAuthor(searchQuery);
@@ -78,9 +114,9 @@ public class AuthorHelper {
         
     }
     
-    public static String getErrorMessage(){
+    public static String getMessage(){
         AddAuthorPage addAuthorPage = page(AddAuthorPage.class);
-        String errorMessage = addAuthorPage.getErrorMessage();
-        return errorMessage;
+        String Message = addAuthorPage.getMessage();
+        return Message;
     }
 }

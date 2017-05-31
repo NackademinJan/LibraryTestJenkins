@@ -5,7 +5,9 @@
  */
 package se.nackademin.librarytest.pages;
 
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,7 +15,7 @@ import org.openqa.selenium.support.FindBy;
  *
  * @author testautomatisering
  */
-public class EditMyProfilePage extends MenuPage{
+public class EditMyProfilePage extends MyProfilePage{
     private static final Logger LOG =  Logger.getLogger(EditMyProfilePage.class.getName());
     @FindBy(css = "#gwt-uid-3")
     private SelenideElement userDisplayName;
@@ -29,6 +31,8 @@ public class EditMyProfilePage extends MenuPage{
     private SelenideElement userEmail;
     @FindBy(css = "#save-user-button")
     private SelenideElement saveUserButton;
+    @FindBy(css = ".v-label-undef-w")
+    private SelenideElement errorMessage;
     
     public void setDisplayName(String username){
         setTextFieldValue("display name field", username, userDisplayName);
@@ -50,6 +54,15 @@ public class EditMyProfilePage extends MenuPage{
     }
     public void clicksaveUserButton(){
         clickButton("save user button", saveUserButton);
+    }
+    public String getMessage(){
+        LOG.log(Level.INFO, "Getting message produced when updating user");
+        return errorMessage.getText();
+    }
+    public int cantFindSetRoleButtons(){
+        LOG.log(Level.INFO, "Checking that set Role Buttons are not visible");
+        int n = $$("#gwt-uid-15").size();
+        return n;
     }
     
 }

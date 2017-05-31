@@ -42,5 +42,4 @@ public class Table {
         }
         throw new NoSuchElementException("Could not find cell containing " + query);
     }
-    
 }

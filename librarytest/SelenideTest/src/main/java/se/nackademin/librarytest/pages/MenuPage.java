@@ -5,6 +5,7 @@
  */
 package se.nackademin.librarytest.pages;
 
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.sleep;
 import com.codeborne.selenide.SelenideElement;
 import java.util.logging.Level;
@@ -81,7 +82,11 @@ public class MenuPage extends PageBase{
         NavigationHelper.goToBook(bookTitle);
         sleep(1000);
     }
-    
+    public void navigateToAuthorOfBook(String bookTitle, String authorFullname){
+        LOG.log(Level.INFO, "Navigating to the authorpage for author named: {0}", authorFullname);
+        NavigationHelper.goToAuthorOfBook(bookTitle, authorFullname);
+        sleep(1000);
+    }
     public void navigateToAuthor(String authorFullName){
         LOG.log(Level.INFO, "Navigating to the authorpage for author named: {0}", authorFullName);
         NavigationHelper.goToAuthor(authorFullName);
@@ -92,5 +97,28 @@ public class MenuPage extends PageBase{
         clickButton("the sign out link", signOut);
         sleep(1000);
     }
+    
+    public int cantNavigateToAddUser(){
+        LOG.log(Level.INFO, "Checking that Add User link is not visible");
+        int n = $$("#side-menu-link-add-user").size();
+        return n;
+    }
+    
+    public int cantNavigateToMyProfile(){
+        LOG.log(Level.INFO, "Checking that Sign In link is not visible");
+        int n = $$("#side-menu-link-my-profile").size();
+        return n;
+    }
+    
+    public int cantNavigateToAddAuthor(){
+        LOG.log(Level.INFO, "Checking that Add Author link is not visible");
+        int n = $$("#side-menu-link-add-author").size();
+        return n;
+    }
+    public int cantNavigateToAddBook(){
+        LOG.log(Level.INFO, "Checking that Add Book link is not visible");
+        int n = $$("#side-menu-link-add-book").size();
+        return n;
+    }  
     
 }

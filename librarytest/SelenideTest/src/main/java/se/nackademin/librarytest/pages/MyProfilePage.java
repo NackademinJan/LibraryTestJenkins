@@ -5,6 +5,7 @@
  */
 package se.nackademin.librarytest.pages;
 
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,16 +67,17 @@ public class MyProfilePage extends MenuPage{
     public void clickFirstBorrowedBookTitle(){
         clickButton("title of the first book in the user's borrowed book list", firstBorrowedBookTitle);
     }
-    
-    
-    
     public void clickEditUserButton(){
         clickButton("edit user button", editUserButton);
     }
-    
     public void clickDeleteUserButton(){
         clickButton("delete user button", deleteUserButton);
         clickButton("yes button", okButton);
+    }
+    public int cantFindDeleteUserButton(){
+        LOG.log(Level.INFO, "Checking that Delete User Button is not visible");
+        int n = $$("#delete-user-button").size();
+        return n;
     }
     
 }
