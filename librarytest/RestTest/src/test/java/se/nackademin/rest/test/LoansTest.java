@@ -110,7 +110,7 @@ public class LoansTest {
     
     
            //this test currently returns 201 and creates a second copy of a loan with the same user and book (also identical dateBorrowed and dateDue, though those hardly need to be unique) this should NOT happen according to the api. If you want to verify that dupplicate loans are indeed created, either do so manually with httprequester or just comment out the AfterClass cleanup methods though then you have to clean up the 2 dummybooks and dummy authors yourself (the dummyloans are removed automatically if you remove the associated books and/or authors)
-    //@Test //this test tries to post a loan using the same data as has already been entered as part of test-setup. This should not work and we should recieve a 409 status code. 
+    @Test //this test tries to post a loan using the same data as has already been entered as part of test-setup. This should not work and we should recieve a 409 status code. 
     public void testInvalidPostSameLoanTwice(){
         Loan loan = new Loan();
         loan.setBook(GlobVar.aDummyLoanBook);
@@ -215,7 +215,7 @@ public class LoansTest {
         assertEquals("response body should be No id set in loan.", "No id set in loan.", response.body().asString());
     }
             // this test currently returns statuscode 200 and a blank response body, the api says this should not be allowed. On the other hand dateBorrowed is not listed as an obligatory field. 
-    //@Test //this test verifies that we cannot update a loan without a loan dateBorrowed set, that we get the right response code (400) and message
+    @Test //this test verifies that we cannot update a loan without a loan dateBorrowed set, that we get the right response code (400) and message
     public void testInvalidPutLoanWithoutDateBorrowed(){
         Loan loan = new Loan();
         loan.setId(GlobVar.aDummyLoanId);
@@ -234,7 +234,7 @@ public class LoansTest {
     }
     
             // this test currently returns statuscode 200 and a blank response body, the api says this should not be allowed. On the other hand dateDue is not listed as an obligatory field. 
-    //@Test //this test verifies that we cannot update a loan without a loan dateDue set, that we get the right response code (400) and message
+    @Test //this test verifies that we cannot update a loan without a loan dateDue set, that we get the right response code (400) and message
     public void testInvalidPutLoanWithoutDateDue(){
         Loan loan = new Loan();
         loan.setId(GlobVar.aDummyLoanId);

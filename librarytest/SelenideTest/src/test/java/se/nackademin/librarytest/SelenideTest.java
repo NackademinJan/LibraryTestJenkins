@@ -97,7 +97,7 @@ public class SelenideTest extends TestBase{
         LOG.log(Level.INFO, "*** Finished testInvalidAnonymousCannotFindTheseLinks() test ***");
     }
     
-     @Test //This test verifies that certain links cannot be found (and thus potentially used) by users of the loaner type
+    @Test //This test verifies that certain links cannot be found (and thus potentially used) by users of the loaner type
     public void testInvalidLoanerCannotFindTheseLinks(){
         LOG.log(Level.INFO, "*** Starting testInvalidLoanerCannotFindTheseLinks() test ***");
         UserHelper.logOut();
@@ -140,7 +140,7 @@ public class SelenideTest extends TestBase{
         LOG.log(Level.INFO, "*** Finished testInvalidLoanerCannotFindTheseLinks() test ***");
     }
     
-    //@Test //this test starts with an anonymous user creating a loaner account with randomized displayName and password. Then it logs in as that loander-role user and attempts to edit its own data and finally verifies that this has been done.
+    @Test //this test starts with an anonymous user creating a loaner account with randomized displayName and password. Then it logs in as that loander-role user and attempts to edit its own data and finally verifies that this has been done.
     public void testAnonymousCreatesMinimalUserThenEditsUser(){
         LOG.log(Level.INFO, "*** Starting testAnonymousCreatesMinimalUserThenEditsUser() test ***");
         UserHelper.logOut();
@@ -340,7 +340,7 @@ public class SelenideTest extends TestBase{
         //add book title, change book publication date to an invalid entry
         BookHelper.createNewBookWithAuthor(GlobVarSelenide.bSecondDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, "", "", "", GlobVarSelenide.aDummyBookTotalNbrCopies, GlobVarSelenide.aDummyBookNbrPages);
         assertEquals("the count of error-indicators, ! should be 1", 1, BookHelper.checkErrorSignInButton());
-        //BookHelper.checkErrorSignInButton(); //this will cause a test error if it fails by being abscent, 
+        
         
         //change publication date to proper format, change number of pages to an invalid (non-integer) entry
         BookHelper.invalidCreateNewBookWithAuthor(GlobVarSelenide.bSecondDummyBookTitle, GlobVarSelenide.dummyAuthorFullName, "", "", GlobVarSelenide.bSecondDummyBookPublicationDate, GlobVarSelenide.aDummyBookTotalNbrCopies.toString(), "");

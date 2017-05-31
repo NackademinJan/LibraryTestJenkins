@@ -141,7 +141,7 @@ public class PutTest {
         assertEquals("response body should be blank", "", unPutResponse.body().asString());
     }
     
-    //@Test //this test verifies that you cannot update a book with a new author that doesnt already exist in the system, that we get the appropriate response statuscode (400) and a blank response body
+    @Test //this test verifies that you cannot update a book with a new author that doesnt already exist in the system, that we get the appropriate response statuscode (400) and a blank response body
           //This test while testing the current version of the system returns 200 and somehow produces a new author with the given id and name which should NOT happen!!!
     public void testInvalidPutBookWithNewAuthorNotPreviouslyExistingInSystem(){
         Integer BookId = GlobVar.aDummyBookId;
