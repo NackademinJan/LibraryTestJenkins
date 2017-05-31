@@ -36,6 +36,8 @@ public class EditBookPage extends BookPage{
     private SelenideElement nbrOfPagesField;
     @FindBy(css = "#save-book-button")
     private SelenideElement saveBookButton;
+    @FindBy(css = ".v-label-undef-w")
+    private SelenideElement message;
     
     public String getTitleField(){
         LOG.log(Level.INFO, "Getting the book's pagecount");
@@ -89,7 +91,10 @@ public class EditBookPage extends BookPage{
     public void clickAddSelectedAuthorToBookButton(){
         clickButton("add selected author to book button", addSelectedAuthorToBookButton);
     }
-    
+    public String getMessage(){
+        LOG.log(Level.INFO, "Getting message produced when adding book");
+        return message.getText();
+    }
     public void clickSaveBookButton(){
         clickButton("save book button", saveBookButton);
     }

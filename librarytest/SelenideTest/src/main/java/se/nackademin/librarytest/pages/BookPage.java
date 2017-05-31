@@ -29,8 +29,6 @@ public class BookPage extends MenuPage{
     private SelenideElement datePublishedField;
     @FindBy(css = "#gwt-uid-13")
     private SelenideElement nbrOfCopiesAvailableField;
-    @FindBy(css = "#gwt-uid-15")
-    private SelenideElement totalNbrOfCopiesField;
     @FindBy(css = "#borrow-book-button")
     private SelenideElement borrowBookButton;
     @FindBy(css = "#edit-book-button")

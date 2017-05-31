@@ -42,7 +42,7 @@ public class AddBookPage extends BookPage{
     @FindBy(css = "#add-book-button > span:nth-child(1).v-errorindicator")               
     private SelenideElement errorSignInsideButton;
     @FindBy(css = ".v-label-undef-w")
-    private SelenideElement errorMessage;
+    private SelenideElement message;
     
     public String getTitleField(){
         LOG.log(Level.INFO, "Getting the book's title");
@@ -101,7 +101,7 @@ public class AddBookPage extends BookPage{
     }
     public String getMessage(){
         LOG.log(Level.INFO, "Getting message produced when adding book");
-        return errorMessage.getText();
+        return message.getText();
     }
     
     public void clickListOfAuthorsFirstEntry(){

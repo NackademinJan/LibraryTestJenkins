@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="se.nackademin.librarytest.SelenideTest" time="297.596" tests="15" errors="0" skipped="0" failures="0">
+<testsuite name="se.nackademin.librarytest.SelenideTest" time="306.196" tests="15" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/i386"/>
@@ -61,19 +61,19 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.027"/>
-  <testcase name="testInvalidLoanerCannotFindTheseLinks" classname="se.nackademin.librarytest.SelenideTest" time="22.717"/>
-  <testcase name="testInvalidAnonymousCannotFindTheseLinks" classname="se.nackademin.librarytest.SelenideTest" time="20.802"/>
-  <testcase name="testLibrarianEditsABookAndAuthor" classname="se.nackademin.librarytest.SelenideTest" time="35.39"/>
-  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.875"/>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesBook" classname="se.nackademin.librarytest.SelenideTest" time="16.154"/>
-  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="9.119"/>
-  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="13.532"/>
-  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="24.606"/>
-  <testcase name="testInvalidLibrarianDuplicateLibrarian" classname="se.nackademin.librarytest.SelenideTest" time="8.416"/>
-  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.686"/>
-  <testcase name="testLibrariancreatesTheSameBookBookAndAuthorTwice" classname="se.nackademin.librarytest.SelenideTest" time="30.237"/>
-  <testcase name="testLibrarianCreatesAnAuthorAndAddsTwoAuthorsToBook" classname="se.nackademin.librarytest.SelenideTest" time="22.914"/>
-  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="24.822"/>
-  <testcase name="testLibrarianEditsSelf" classname="se.nackademin.librarytest.SelenideTest" time="21.299"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesAuthor" classname="se.nackademin.librarytest.SelenideTest" time="14.57"/>
+  <testcase name="testInvalidLoanerCannotFindTheseLinks" classname="se.nackademin.librarytest.SelenideTest" time="22.864"/>
+  <testcase name="testInvalidAnonymousCannotFindTheseLinks" classname="se.nackademin.librarytest.SelenideTest" time="21.065"/>
+  <testcase name="testLibrarianEditsABookAndAuthor" classname="se.nackademin.librarytest.SelenideTest" time="36.241"/>
+  <testcase name="testLoanerSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="17.205"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesBook" classname="se.nackademin.librarytest.SelenideTest" time="16.636"/>
+  <testcase name="testInvalidDataEntryWhenLibrarianCreatesUser" classname="se.nackademin.librarytest.SelenideTest" time="9.28"/>
+  <testcase name="testAnonymousSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="13.83"/>
+  <testcase name="testLibrarianBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="25.758"/>
+  <testcase name="testInvalidLibrarianDuplicateLibrarian" classname="se.nackademin.librarytest.SelenideTest" time="8.651"/>
+  <testcase name="testLibrarianSiteBrowse" classname="se.nackademin.librarytest.SelenideTest" time="16.944"/>
+  <testcase name="testLibrariancreatesTheSameBookBookAndAuthorTwice" classname="se.nackademin.librarytest.SelenideTest" time="31.766"/>
+  <testcase name="testLibrarianCreatesAnAuthorAndAddsTwoAuthorsToBook" classname="se.nackademin.librarytest.SelenideTest" time="23.721"/>
+  <testcase name="testLoanerBorrowAndReturnBook" classname="se.nackademin.librarytest.SelenideTest" time="25.592"/>
+  <testcase name="testLibrarianEditsSelf" classname="se.nackademin.librarytest.SelenideTest" time="22.073"/>
 </testsuite>

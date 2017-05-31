@@ -27,7 +27,7 @@ public class EditAuthorPage extends AuthorPage {
     @FindBy(css = "#save-author-button")
     private SelenideElement saveAuthorButton;
     @FindBy(css = ".v-label-undef-w")
-    private SelenideElement errorMessage;
+    private SelenideElement message;
     
     
     public void setFirstName(String firstName){
@@ -52,6 +52,6 @@ public class EditAuthorPage extends AuthorPage {
     
     public String getMessage(){
         LOG.log(Level.INFO, "Getting message produced when adding author");
-        return errorMessage.getText();
+        return message.getText();
     }
 }

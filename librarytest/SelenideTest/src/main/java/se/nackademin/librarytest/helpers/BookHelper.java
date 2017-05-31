@@ -183,8 +183,8 @@ public class BookHelper {
     
     
     public static String getMessage(){
-        AddBookPage addBookPage = page(AddBookPage.class);
-        String Message = addBookPage.getMessage();
+        EditBookPage editBookPage = page(EditBookPage.class);
+        String Message = editBookPage.getMessage();
         return Message;
     }
     

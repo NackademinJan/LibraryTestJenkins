@@ -32,7 +32,7 @@ public class EditMyProfilePage extends MyProfilePage{
     @FindBy(css = "#save-user-button")
     private SelenideElement saveUserButton;
     @FindBy(css = ".v-label-undef-w")
-    private SelenideElement errorMessage;
+    private SelenideElement message;
     
     public void setDisplayName(String username){
         setTextFieldValue("display name field", username, userDisplayName);
@@ -57,7 +57,7 @@ public class EditMyProfilePage extends MyProfilePage{
     }
     public String getMessage(){
         LOG.log(Level.INFO, "Getting message produced when updating user");
-        return errorMessage.getText();
+        return message.getText();
     }
     public int cantFindSetRoleButtons(){
         LOG.log(Level.INFO, "Checking that set Role Buttons are not visible");

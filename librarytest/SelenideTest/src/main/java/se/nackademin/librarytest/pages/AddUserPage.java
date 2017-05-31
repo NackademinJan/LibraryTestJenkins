@@ -36,7 +36,7 @@ public class AddUserPage extends MenuPage {
     @FindBy(css = "span.v-radiobutton:nth-child(2) > label:nth-child(2)")
     private SelenideElement setRoleLoanerRadioButton;
     @FindBy(css = ".v-label-undef-w")
-    private SelenideElement errorMessage;
+    private SelenideElement message;
     
     
     public void setDisplayName(String username){
@@ -70,6 +70,6 @@ public class AddUserPage extends MenuPage {
     
     public String getMessage(){
         LOG.log(Level.INFO, "Getting message produced when adding user");
-        return errorMessage.getText();
+        return message.getText();
     }
 }
