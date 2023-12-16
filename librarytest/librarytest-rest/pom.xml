@@ -14,7 +14,7 @@
   <repositories>
     <repository>
       <id>org.jboss.resteasy</id>
-      <url>http://repository.jboss.org/maven2/</url>
+      <url>https://repository.jboss.org/maven2/</url>
     </repository>
   </repositories>
   
